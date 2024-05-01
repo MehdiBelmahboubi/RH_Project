@@ -1,0 +1,122 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-image: url("RH1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.container {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px 0 15px;
+}
+
+span {
+  color: #fff;
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 10px 0;
+}
+
+header {
+  color: #fff;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 10px 0;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+
+.input-field .input {
+  height: 45px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  color: #fff;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+input[type="password"] {
+  width: 100%;
+}
+
+i {
+  position: relative;
+  top: -31px;
+  left: 17px;
+  color: #fff;
+}
+
+.check-label {
+  margin-left: 5px;
+}
+
+::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.submit {
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  height: 45px;
+  outline: none;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: .3s;
+}
+
+.submit:hover {
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: small;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  margin-left: 5px;
+}
+
+.right {
+  display: flex;
+}
+
+label a {
+  color: #fff;
+  text-decoration: none;
+}
