@@ -1,0 +1,13 @@
+#hero {
+  position: fixed;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.507), rgba(0, 0, 0, 0.438)) center;
+  background-size: cover;
+}
+h1,h5{
+  font-weight: 600;
+}
+
+
