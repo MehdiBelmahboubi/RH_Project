@@ -2,13 +2,18 @@
   font-family: 'Poppins', sans-serif;
 }
 
-body {
+#hero {
+  position: fixed;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
   background-image: url("RH1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
 }
+
 
 .box {
   display: flex;
@@ -32,7 +37,7 @@ body {
   padding: 10px 0 10px 0;
 }
 ::-webkit-input-placeholder {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .input-field {
@@ -47,14 +52,32 @@ body {
   border: none;
   outline: none;
   border-radius: 30px;
-  color: #fff;
+  color: rgb(255, 255, 255);
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+.input-field1 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.input-field1 .input1 {
+  height: 45px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  color: rgba(0, 0, 0, 0.43);
   padding: 0 20px;
   background: rgba(255, 255, 255, 0.1);
   text-align: left;
 }
 
 .white-text {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 select.input {
@@ -63,13 +86,13 @@ select.input {
   border: none;
   outline: none;
   border-radius: 30px;
-  color: #fff;
+  color: rgba(0, 0, 0, 0.43);
   padding: 0 20px;
   background: rgba(255, 255, 255, 0.1);
 }
 
 .upload-label {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.43);
   padding: 15px 20px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 30px;
