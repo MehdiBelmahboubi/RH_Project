@@ -1,1 +1,33 @@
-<p>rh works!</p>
+<div class="container">
+  <h2>Liste des Ressources Humaines</h2>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Téléphone</th>
+      <th>CIN</th>
+      <th>Email</th>
+      <th>Département ID</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let rh of rhs">
+      <td>{{ rh.nom }}</td>
+      <td>{{ rh.prenom }}</td>
+      <td>{{ rh.telephone }}</td>
+      <td>{{ rh.cin }}</td>
+      <td>{{ rh.email }}</td>
+      <td>{{ rh.departement_id }}</td>
+      <td>
+        <button class="edit-button" (click)="editRH(rh)">Modifier</button>
+        <button class="delete-button" (click)="deleteRH(rh.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <button class="add-button" (click)="addRH()">Ajouter RH</button>
+</div>

@@ -1,11 +1,11 @@
 <mat-toolbar style="background-color: cadetblue">
-  <button mat-button style="color: aliceblue;font-size:larger">Admin</button>
+  <button mat-button style="color: aliceblue;font-size:larger" routerLink="/admin">Admin</button>
   <span style="flex: auto"></span>
-  <span style="margin-left: 10px;"></span> <!-- Adjust the margin as needed -->
+  <span style="margin-left: 10px;"></span>
   <button mat-raised-button style="background-color: darkslategrey;color: aliceblue;font-size: small">LogOut</button>
 </mat-toolbar>
-<mat-drawer-container>
-  <mat-drawer opened="true" mode="side" position="start">
+<mat-drawer-container >
+  <mat-drawer style="background-color: rgb(229,240,241)" opened="true" mode="side" position="start">
     <mat-list>
       <mat-list-item>
         <button mat-button routerLink="/departement">

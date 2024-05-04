@@ -21,6 +21,7 @@ import { SettingComponent } from './Admin-Interface/setting/setting.component';
 import {MatDrawer, MatDrawerContainer, MatDrawerContent} from "@angular/material/sidenav";
 import {MatList, MatListItem, MatListModule} from "@angular/material/list";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {MatIcon, MatIconModule} from "@angular/material/icon";
     MatListModule,
     MatListItem,
     MatDrawerContent,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
   ],
   providers: [
     provideAnimationsAsync()

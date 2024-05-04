@@ -1,0 +1,62 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top:30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #333;
+  color: white;
+}
+
+.actions {
+  text-align: left;
+}
+
+.modifier-btn, .supprimer-btn, .ajouter-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modifier-btn {
+  background-color: #3498db;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.supprimer-btn {
+  background-color: #e74c3c;
+  color: #fff;
+ margin-left: 10px;
+}
+
+.ajouter-btn {
+  background-color: #28a745;
+  color: #fff;
+  display: block;
+  margin: 20px 0;
+}
+
+.ajouter-btn:hover, .supprimer-btn:hover, .modifier-btn:hover {
+  background-color: #bad2d3;
+}
