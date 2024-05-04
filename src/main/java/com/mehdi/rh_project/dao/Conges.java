@@ -1,7 +1,7 @@
 package com.mehdi.rh_project.dao;
 
-import com.mehdi.rh_project.cenum.Conges_Etat;
-import com.mehdi.rh_project.cenum.Conges_Type;
+import com.mehdi.rh_project.enums.Conges_Etat;
+import com.mehdi.rh_project.enums.Conges_Type;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;

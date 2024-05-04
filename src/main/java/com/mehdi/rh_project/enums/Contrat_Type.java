@@ -1,4 +1,4 @@
-package com.mehdi.rh_project.cenum;
+package com.mehdi.rh_project.enums;
 
 public enum Contrat_Type {
     CDI,CDD,FREELANCE

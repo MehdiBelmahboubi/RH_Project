@@ -1,5 +1,6 @@
 package com.mehdi.rh_project.dao;
 
+import com.mehdi.rh_project.dao.Departement;
 import jakarta.persistence.*;
 import lombok.*;
 

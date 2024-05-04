@@ -1,9 +1,6 @@
 package com.mehdi.rh_project.dao;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mehdi.rh_project.enums.Role;
-import com.mehdi.rh_project.dao.Departement;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -21,18 +18,12 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @SuperBuilder
-public class RH extends User {
-
+public class Admin extends User{
     @Enumerated(EnumType.STRING)
-    private Role role = Role.RH;
-
-    @ManyToOne
-    @JoinColumn(name = "departement_id")
-    private Departement departement;
+    private Role role = Role.ADMIN;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
-
 }

@@ -1,6 +1,6 @@
 package com.mehdi.rh_project.dao;
 
-import com.mehdi.rh_project.cenum.Depatement_Nom;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,17 +12,18 @@ public class Departement {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Depatement_Nom nom;
-
-    @OneToOne
-    @JoinColumn(name = "rh_id")
-    private RH rh;
+    private String nom;
 
     @OneToMany(mappedBy = "departement")
+    @JsonIgnore
+    private List<RH> rhList;
+
+    @OneToMany(mappedBy = "departement")
+    @JsonIgnore
     private List<Employes> employesList;
 
     @OneToMany(mappedBy = "departement")
+    @JsonIgnore
     private List<Candidat> candidatList;
 }

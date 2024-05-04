@@ -1,6 +1,6 @@
 package com.mehdi.rh_project.dao;
 
-import com.mehdi.rh_project.cenum.Taches_Etat;
+import com.mehdi.rh_project.enums.Taches_Etat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;

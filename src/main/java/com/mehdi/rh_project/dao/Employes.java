@@ -1,36 +1,38 @@
 package com.mehdi.rh_project.dao;
 
-import com.mehdi.rh_project.cenum.Contrat_Type;
-import com.mehdi.rh_project.cenum.Fonction_Type;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mehdi.rh_project.dao.Conges;
+import com.mehdi.rh_project.dao.Horaire;
+import com.mehdi.rh_project.dao.Departement;
+import com.mehdi.rh_project.dao.Performance;
+import com.mehdi.rh_project.dao.Taches;
+import com.mehdi.rh_project.enums.Contrat_Type;
+import com.mehdi.rh_project.enums.Fonction_Type;
+import com.mehdi.rh_project.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
-@NoArgsConstructor @AllArgsConstructor @Getter @Setter @ToString @Builder
-public class Employes {
-    @Id
-    private String cin;
-
-    @Column(nullable = false)
-    private String nom;
-
-    @Column(nullable = false)
-    private String prenom;
-
-    private String photo;
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@SuperBuilder
+public class Employes extends User {
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String dateNsc;
 
-    @Column(unique = true,nullable = false)
-    private int telephone;
-
-    @Column(unique = true,nullable = false)
-    private String email;
 
     @Column(nullable = false)
     private String cnss;
@@ -40,6 +42,7 @@ public class Employes {
     private Fonction_Type fonction;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String dateRecrutement;
 
     @Column(nullable = false)
@@ -49,8 +52,8 @@ public class Employes {
     @Column(nullable = false)
     private Contrat_Type contrat;
 
-    @Column(nullable = false)
-    private String passwd;
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.EMPLOYE;
 
     @ManyToOne
     @JoinColumn(name = "departement_id")
@@ -72,4 +75,9 @@ public class Employes {
             inverseJoinColumns = @JoinColumn(name = "taches_id")
     )
     private List<Taches> tachesList ;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
 }
