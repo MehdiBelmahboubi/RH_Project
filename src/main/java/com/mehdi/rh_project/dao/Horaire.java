@@ -1,5 +1,6 @@
 package com.mehdi.rh_project.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +18,7 @@ public class Horaire {
     private Long heureTravaille;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "employes_id")
-    private Employes employes;
+    private User employes;
 }

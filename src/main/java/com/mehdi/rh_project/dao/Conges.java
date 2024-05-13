@@ -1,5 +1,6 @@
 package com.mehdi.rh_project.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mehdi.rh_project.enums.Conges_Etat;
 import com.mehdi.rh_project.enums.Conges_Type;
 import jakarta.persistence.*;
@@ -25,7 +26,7 @@ public class Conges {
     private String dateFin;
 
     @Column(nullable = false)
-    private int periode;
+    private Long periode;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -36,6 +37,7 @@ public class Conges {
     private Conges_Etat etat;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "employes_id")
-    private Employes employes;
+    private User employes;
 }

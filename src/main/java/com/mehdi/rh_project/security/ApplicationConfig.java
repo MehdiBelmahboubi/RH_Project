@@ -1,15 +1,13 @@
 package com.mehdi.rh_project.security;
 
-import com.mehdi.rh_project.Repository.AdminRepository;
-import com.mehdi.rh_project.Repository.EmployeRepository;
-import com.mehdi.rh_project.Repository.RhRepository;
-import com.mehdi.rh_project.dao.Admin;
-import com.mehdi.rh_project.dao.Employes;
-import com.mehdi.rh_project.dao.RH;
+
+import com.mehdi.rh_project.Repository.UserRepository;
+import com.mehdi.rh_project.dao.User;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,7 +17,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,28 +26,15 @@ import java.util.Collections;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-    private final RhRepository rhRepository;
-    private final AdminRepository adminRepository;
-    private final EmployeRepository employeeRepository;
+    private final UserRepository userRepository;
 
     @Bean
     public UserDetailsService userDetailsService(){
         return username -> {
-            RH rhUser = rhRepository.findByEmail(username);
-            if (rhUser != null) {
-                return rhUser;
+            User User = userRepository.findByEmail(username);
+            if (User != null) {
+                return User;
             }
-
-            Admin adminUser = adminRepository.findByEmail(username);
-            if (adminUser != null) {
-                return adminUser;
-            }
-
-            Employes employeeUser = employeeRepository.findByEmail(username);
-            if (employeeUser != null) {
-                return employeeUser;
-            }
-
             throw new UsernameNotFoundException("User not found");
         };
     }
@@ -67,6 +53,17 @@ public class ApplicationConfig {
     }
 
 
+    @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("http://localhost:4200"); // Allow requests from your Angular app
+        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.addAllowedHeader("*");
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return new CorsFilter(source);
+
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

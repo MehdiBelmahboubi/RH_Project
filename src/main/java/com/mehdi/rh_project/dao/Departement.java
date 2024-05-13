@@ -12,18 +12,15 @@ public class Departement {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String nom;
 
-    @OneToMany(mappedBy = "departement")
+    @OneToMany(mappedBy = "departement",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<RH> rhList;
+    private List<User> userList;
 
-    @OneToMany(mappedBy = "departement")
-    @JsonIgnore
-    private List<Employes> employesList;
 
-    @OneToMany(mappedBy = "departement")
+    @OneToMany(mappedBy = "departement",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Candidat> candidatList;
 }

@@ -1,10 +1,10 @@
 package com.mehdi.rh_project;
 
-import com.mehdi.rh_project.Service.imp.AdminService;
-import com.mehdi.rh_project.dao.Admin;
-import com.mehdi.rh_project.enums.Role;
-import com.mehdi.rh_project.request.RegisterRequest;
-import org.springframework.boot.CommandLineRunner;
+//import com.mehdi.rh_project.Service.imp.AdminService;
+//import com.mehdi.rh_project.dao.Admin;
+//import com.mehdi.rh_project.enums.Role;
+//import com.mehdi.rh_project.request.RegisterRequest;
+//import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

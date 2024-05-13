@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+public class UserRequest {
     private String cin;
     private String nom;
     private String prenom;
@@ -26,6 +26,6 @@ public class RegisterRequest {
     private Contrat_Type contrat;
     private String email;
     private String password;
-    private Long department;
+    private String departement;
     private Role role;
 }

@@ -1,5 +1,6 @@
 package com.mehdi.rh_project.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mehdi.rh_project.enums.Taches_Etat;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,13 +17,20 @@ public class Taches {
     @Column(nullable = false)
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Taches_Etat etat;
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private String dateDebut;
+
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String dateFin;
 
-    @ManyToMany(mappedBy = "tachesList")
-    private List<Employes> employesList;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "employes_id")
+    private User employes;
 }

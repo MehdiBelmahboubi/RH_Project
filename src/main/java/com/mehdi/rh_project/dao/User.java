@@ -1,9 +1,13 @@
 package com.mehdi.rh_project.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mehdi.rh_project.enums.Contrat_Type;
+import com.mehdi.rh_project.enums.Fonction_Type;
 import com.mehdi.rh_project.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,12 +16,12 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@MappedSuperclass
-@SuperBuilder
+@Builder
 public class User implements UserDetails , Principal {
     @Id
     private String cin;
@@ -41,6 +45,46 @@ public class User implements UserDetails , Principal {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private String dateNsc;
+
+
+    @Column(nullable = false)
+    private String cnss;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Fonction_Type fonction;
+
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private String dateRecrutement;
+
+    @Column(nullable = false)
+    private float salaire;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Contrat_Type contrat;
+
+
+    @ManyToOne
+    @JoinColumn(name = "departement_id")
+    private Departement departement;
+
+    @OneToMany(mappedBy = "employes",cascade = CascadeType.ALL)
+    private List<Conges> congesList;
+
+    @OneToMany(mappedBy = "employes",cascade = CascadeType.ALL)
+    private List<Horaire> horaireList;
+
+    @OneToMany(mappedBy = "employes",cascade = CascadeType.ALL)
+    private List<Performance> performanceListe;
+
+    @OneToMany(mappedBy = "employes",cascade = CascadeType.ALL)
+    private List<Taches> tachesList ;
 
 
     @Override

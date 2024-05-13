@@ -1,5 +1,6 @@
 package com.mehdi.rh_project.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Performance {
     private String description;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "employes_id")
-    private Employes employes;
+    private User employes;
 }
