@@ -40,6 +40,7 @@ public class IAuthenticateService implements AuthenticateService {
             var jwtToken = jwtService.generateToken(User);
             return AuthenticationResponse.builder()
                     .token(jwtToken)
+                    .nom(User.getNom())
                     .message("User authenticated")
                     .role(User.getRole())
                     .build();

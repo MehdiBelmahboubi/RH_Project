@@ -52,6 +52,7 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
         var jwtToken = jwtService.generateToken(usercreate);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .nom(usercreate.getNom())
                 .message("User created")
                 .role(usercreate.getRole())
                 .build();
