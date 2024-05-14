@@ -41,11 +41,11 @@ public class IAuthenticateService implements AuthenticateService {
             return AuthenticationResponse.builder()
                     .token(jwtToken)
                     .message("User authenticated")
+                    .role(User.getRole())
                     .build();
         }
         else {
             throw new UsernameNotFoundException("User not found");
         }
     }
-
 }

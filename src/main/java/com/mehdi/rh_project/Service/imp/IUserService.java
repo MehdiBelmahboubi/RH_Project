@@ -53,6 +53,7 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .message("User created")
+                .role(usercreate.getRole())
                 .build();
     }
 

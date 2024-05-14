@@ -1,5 +1,6 @@
 package com.mehdi.rh_project.response;
 
+import com.mehdi.rh_project.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,4 +14,5 @@ public class AuthenticationResponse {
 
     private String message;
     private String token;
+    private Role role;
 }

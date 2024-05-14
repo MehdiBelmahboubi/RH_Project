@@ -4,6 +4,7 @@ import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,13 +33,15 @@ public class SecurityConfiguration{
                 .cors(withDefaults())
                 .csrf()
                 .disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/api/**")
-                .permitAll()
+                .authorizeHttpRequests((requests) ->
+                        requests.requestMatchers(HttpMethod.POST,"/api/authenticate","/api/candidate/create").permitAll()
+                                .anyRequest().authenticated())
+//                .requestMatchers("/api/**")
+//                .permitAll()
 //                .authenticated()
-                .anyRequest()
-                .authenticated()
-                .and()
+//                .anyRequest()
+//                .authenticated()
+//                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
