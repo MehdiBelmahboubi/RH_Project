@@ -9,11 +9,6 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
 import { HomeTemplateComponent } from './User-Interface/home/home-template.component';
 import { LoginComponent } from './User-Interface/login/login.component';
 import { CandidatureComponent } from './User-Interface/candidature/candidature.component';
-import { UserComponent } from './User-Interface/user/user.component';
-import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
-import {MatOption, MatSelect, MatSelectModule} from "@angular/material/select";
-import {MatOptionModule} from "@angular/material/core";
-import { AdminComponent } from './Admin-Interface/admin/admin.component';
 import { EmployesComponent } from './Admin-Interface/employes/employes.component';
 import { RhComponent } from './Admin-Interface/rh/rh.component';
 import { DepartementComponent } from './Admin-Interface/departement/departement.component';
@@ -21,7 +16,12 @@ import { SettingComponent } from './Admin-Interface/setting/setting.component';
 import {MatDrawer, MatDrawerContainer, MatDrawerContent} from "@angular/material/sidenav";
 import {MatList, MatListItem, MatListModule} from "@angular/material/list";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { HeaderComponent } from './header/header.component';
+import { SidenavComponent } from './Admin-Interface/sidenav/sidenav.component';
+import { SidenavRhComponent } from './Rh-Interface/sidenav-rh/sidenav-rh.component';
+import { EmployesRhComponent } from './Rh-Interface/employes-rh/employes-rh.component';
 
 
 @NgModule({
@@ -30,26 +30,30 @@ import {FormsModule} from "@angular/forms";
     HomeTemplateComponent,
     LoginComponent,
     CandidatureComponent,
-    UserComponent,
-    AdminComponent,
+    HeaderComponent,
     EmployesComponent,
     RhComponent,
     DepartementComponent,
-    SettingComponent
+    SettingComponent,
+    SidenavComponent,
+    SidenavRhComponent,
+    EmployesRhComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatDrawerContainer,
-    MatDrawer,
-    MatListModule,
-    MatListItem,
-    MatDrawerContent,
-    MatIconModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatDrawerContainer,
+        MatDrawer,
+        MatListModule,
+        MatListItem,
+        MatDrawerContent,
+        MatIconModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
   providers: [
     provideAnimationsAsync()
   ],

@@ -1,4 +1,4 @@
-<body>
+<section id="hero">
 <div class="box">
   <div class="container">
     <div class="top-header">
@@ -6,28 +6,26 @@
       <header>Login</header>
     </div>
 
+    <form [formGroup]="formLogin" (ngSubmit)="hadleLogin()">
     <div class="input-field">
-      <input type="text" class="input" placeholder="CIN" required>
+      <input type="text" class="input" placeholder="Email" formControlName="email" required>
       <i class="bx bx-envelope"></i>
     </div>
     <div class="input-field">
-      <input type="password" class="input" placeholder="Password" required>
+      <input type="password" class="input" placeholder="Password" formControlName="password" required>
       <i class="bx bx-lock-alt"></i>
     </div>
     <div class="input-field">
-      <input type="submit" class="submit" value="Login">
+      <input type="submit" class="submit" value="Login" >
     </div>
+    </form>
 
     <div class="bottom">
-      <div class="left">
-        <input type="checkbox" id="check">
-        <label for="check"><span class="check-label">Remember Me</span></label>
-      </div>
+      <div class="left"></div>
       <div class="right">
         <label><a href="#">Forgot password ?</a></label>
       </div>
     </div>
-
   </div>
 </div>
-</body>
+</section>

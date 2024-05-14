@@ -37,7 +37,7 @@
   padding: 10px 0 10px 0;
 }
 ::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgb(255, 255, 255);
 }
 
 .input-field {
@@ -70,7 +70,7 @@
   border: none;
   outline: none;
   border-radius: 30px;
-  color: rgba(0, 0, 0, 0.43);
+  color: rgb(255, 255, 255);
   padding: 0 20px;
   background: rgba(255, 255, 255, 0.1);
   text-align: left;
@@ -86,13 +86,13 @@ select.input {
   border: none;
   outline: none;
   border-radius: 30px;
-  color: rgba(0, 0, 0, 0.43);
+  color: rgb(255, 255, 255);
   padding: 0 20px;
   background: rgba(255, 255, 255, 0.1);
 }
 
 .upload-label {
-  color: rgba(0, 0, 0, 0.43);
+  color: rgb(255, 255, 255);
   padding: 15px 20px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 30px;

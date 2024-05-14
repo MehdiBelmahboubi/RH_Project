@@ -2,7 +2,11 @@
   font-family: 'Poppins', sans-serif;
 }
 
-body {
+#hero {
+  position: fixed;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
   background-image: url("RH1.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -75,7 +79,7 @@ i {
 }
 
 ::-webkit-input-placeholder {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.43);
 }
 
 .submit {
