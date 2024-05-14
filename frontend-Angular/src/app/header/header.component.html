@@ -1,8 +1,15 @@
-<mat-toolbar  style="background-color: cadetblue">
-  <button mat-button style="color: aliceblue;font-size:larger" routerLink="/home">MH&RH</button>
-  <span style="flex: auto"></span>
-  <button mat-raised-button style="font-size: small" routerLink="/candidature">Candidacy</button>
-  <span style="margin-left: 10px;"></span> <!-- Adjust the margin as needed -->
-  <button mat-raised-button style="background-color: darkslategrey;color: aliceblue;font-size: small" routerLink="/login">LogIn</button>
+<mat-toolbar style="background-color: cadetblue">
+  <ng-container *ngIf="isLoggedIn(); else loggedOut">
+    <button mat-button style="color: aliceblue;font-size:larger" routerLink="#">Hello {{ userName }}</button>
+    <span style="flex: auto"></span>
+    <button mat-raised-button style="background-color: darkslategrey;color: aliceblue;font-size: small" (click)="logout()">Logout</button>
+  </ng-container>
+  <ng-template #loggedOut>
+    <button mat-button style="color: aliceblue;font-size:larger" routerLink="/home">MH&RH</button>
+    <span style="flex: auto"></span>
+    <button mat-raised-button style="font-size: small" routerLink="/candidature">Candidacy</button>
+    <span style="margin-left: 10px;"></span>
+    <button mat-raised-button style="background-color: darkslategrey;color: aliceblue;font-size: small" routerLink="/login">LogIn</button>
+  </ng-template>
 </mat-toolbar>
 <router-outlet></router-outlet>

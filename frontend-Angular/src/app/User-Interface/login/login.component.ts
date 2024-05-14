@@ -29,6 +29,7 @@ export class LoginComponent {
     this.loginservice.login(email,password).subscribe({
       next: (response: AuthenticateResponse) => {
         localStorage.setItem('token',response.token);
+        localStorage.setItem('nom',response.nom);
         var Role = response.role;
         if(Role=="EMPLOYE")
           {
