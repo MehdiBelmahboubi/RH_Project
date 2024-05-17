@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {AuthenticateResponse} from "./models/AuthenticateResponse";
+import {AuthenticateResponse} from "../../models/AuthenticateResponse";
 import { LoginService } from '../../service/login.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { LoginService } from '../../service/login.service';
 })
 export class LoginComponent {
   formLogin! : FormGroup;
+  errorMessage: string | null = null;
 
   constructor(private fb : FormBuilder,
     private router : Router,
@@ -30,6 +31,9 @@ export class LoginComponent {
       next: (response: AuthenticateResponse) => {
         localStorage.setItem('token',response.token);
         localStorage.setItem('nom',response.nom);
+        localStorage.setItem('prenom',response.prenom);
+        localStorage.setItem('fonction',response.fonction);
+        localStorage.setItem('role',response.role);
         var Role = response.role;
         if(Role=="EMPLOYE")
           {
@@ -43,8 +47,8 @@ export class LoginComponent {
               this.router.navigate(['GsAdmin']);
             }
       },
-      error: (err) => {
-        console.error("Login error", err);
+      error: () => {
+        this.errorMessage = "Invalid email or password. Please try again.";
       }
     })
   }

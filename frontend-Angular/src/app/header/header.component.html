@@ -1,6 +1,6 @@
 <mat-toolbar style="background-color: cadetblue">
   <ng-container *ngIf="isLoggedIn(); else loggedOut">
-    <button mat-button style="color: aliceblue;font-size:larger" routerLink="#">Hello {{ userName }}</button>
+    <button mat-button style="color: aliceblue;font-size:larger" routerLink="#">Welcome {{ userName }}</button>
     <span style="flex: auto"></span>
     <button mat-raised-button style="background-color: darkslategrey;color: aliceblue;font-size: small" (click)="logout()">Logout</button>
   </ng-container>

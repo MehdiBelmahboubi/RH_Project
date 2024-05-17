@@ -1,40 +1,40 @@
 <section id="hero">
-<div class="box">
-  <div class="container">
-    <div class="top-header">
-      <header>Candidacy</header>
-    </div>
+  <div class="box">
+    <div class="container">
+      <div class="top-header">
+        <header>Candidacy</header>
+      </div>
 
-    <div class="input-field">
-      <input type="text" class="input" placeholder="First Name" required>
-    </div>
-    <div class="input-field">
-      <input type="text" class="input" placeholder="Last Name" required>
-    </div>
-    <div class="input-field">
-      <input type="email" class="input white-text" placeholder="Email" required>
-    </div>
-    <div class="input-field1">
-      <select class="input1 white-text">
-        <option disabled selected>Departement</option>
-        <option>Human resource</option>
-        <option>Marketing</option>
-        <option>Finance</option>
-        <option>Computer science</option>
-      </select>
-    </div>
-    <div class="input-field">
-      <label for="cv" class="upload-label">Upload CV</label>
-      <input type="file" id="cv" class="file-upload">
-    </div>
-    <div class="input-field">
-      <label for="motivation_letter" class="upload-label">Upload Motivation Letter</label>
-      <input type="file" id="motivation_letter" class="file-upload">
-    </div>
-
-    <div class="input-field">
-      <input type="submit" class="submit" value="Submit">
+      <form [formGroup]="formcandidature" (ngSubmit)="submitcandidat()">
+        <div class="input-field">
+          <input type="text" class="input" placeholder="First Name" formControlName="nom" required>
+        </div>
+        <div class="input-field">
+          <input type="text" class="input" placeholder="Last Name" formControlName="prenom" required>
+        </div>
+        <div class="input-field">
+          <input type="email" class="input white-text" placeholder="Email" formControlName="email" required>
+        </div>
+        <div class="input-field1">
+          <select class="input1 white-text" formControlName="departement">
+            <option>Informatique</option>
+            <option>RH</option>
+          </select>
+        </div>
+        <div class="input-field">
+          <label class="upload-label" for="cv">Upload CV: {{ cvName || 'No file chosen' }}</label>
+          <input type="file" class="file-upload" id="cv" accept="application/pdf" (change)="selectFile($event, 'cv')">
+        </div>        
+        <div class="input-field">
+          <label for="motivation_letter" class="upload-label">Upload Lettre: {{ lettreMotivationName || 'No file chosen' }}</label>
+          <input type="file" id="motivation_letter" (change)="selectFile($event, 'lettreMotivation')" class="file-upload" accept="application/pdf">
+        </div>
+        <div class="input-field">
+          <input type="submit" class="submit" value="Submit">
+        </div>
+      </form>
+      <div *ngIf="validation" class="error-message" style="color: green;">{{ validation }}</div>
+      <div *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage }}</div>
     </div>
   </div>
-</div>
 </section>
