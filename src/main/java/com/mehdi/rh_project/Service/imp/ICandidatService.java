@@ -5,13 +5,19 @@ import com.mehdi.rh_project.Repository.DepartementRepository;
 import com.mehdi.rh_project.Service.CandidatService;
 import com.mehdi.rh_project.dao.Candidat;
 import com.mehdi.rh_project.dao.Departement;
-import com.mehdi.rh_project.request.CandidatRequest;
 import com.mehdi.rh_project.response.MessageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,27 +25,41 @@ public class ICandidatService implements CandidatService {
     private final CandidatRepository repository;
     private final DepartementRepository departementRepository;
     @Override
-    public MessageResponse createCandidat(CandidatRequest request) {
-        Departement departement = departementRepository.findByNom(request.getDepartement());
-        if(departement==null){
+    public MessageResponse createCandidat( MultipartFile cv, MultipartFile lettreMotivation,String nom,String prenom,String email,String departement) throws IOException {
+        Departement defartementfind = departementRepository.findByNom(departement);
+        if (defartementfind == null) {
             return MessageResponse.builder().message("Departement Not Found").build();
         }
-        Candidat candidat = repository.findByEmail(request.getEmail());
+        Candidat candidat = repository.findByEmail(email);
 
-        if(candidat!=null){
+        if (candidat != null) {
             return MessageResponse.builder().message("Already have a Submiting").build();
         }
+        Path path = Paths.get(System.getProperty("user.home"),"cadidates-app-files","candidatures");
+        if(!Files.exists(path))
+        {
+            Files.createDirectories(path);
+        }
+        String cvId = UUID.randomUUID().toString();
+        Path filePath1 = Paths.get(System.getProperty("user.home"),"cadidates-app-files","candidatures",cvId+".pdf");
+        Files.copy(cv.getInputStream(),filePath1);
+        String lettreId = UUID.randomUUID().toString();
+        Path filePath2 = Paths.get(System.getProperty("user.home"),"cadidates-app-files","candidatures",lettreId+".pdf");
+        Files.copy(lettreMotivation.getInputStream(),filePath2);
+
+
         var candidatcreate = Candidat.builder()
-                .nom(request.getNom())
-                .prenom(request.getPrenom())
-                .email(request.getEmail())
-                .cv(request.getCv())
-                .lettreMotivation(request.getLettreMotivation())
-                .departement(departement)
+                .nom(nom)
+                .prenom(prenom)
+                .email(email)
+                .cv(filePath1.toUri().toString())
+                .lettreMotivation(filePath2.toUri().toString())
+                .departement(defartementfind)
                 .build();
         repository.save(candidatcreate);
         return MessageResponse.builder().message("Candidature Submited").build();
     }
+
 
     @Override
     public MessageResponse deleteCandidat(Long id) {
@@ -69,5 +89,19 @@ public class ICandidatService implements CandidatService {
             departement=Odepartement.get();
         }
         return repository.findByDepartement(departement);
+    }
+
+    @Override
+    public byte[] getcvFile(long idCandidat) throws Exception {
+        Candidat candidat = repository.findById(idCandidat).get();
+        String filePath = candidat.getCv();
+        return Files.readAllBytes(Path.of(URI.create(filePath)));
+    }
+
+    @Override
+    public byte[] getlettreFile(long idCandidat) throws Exception {
+        Candidat candidat = repository.findById(idCandidat).get();
+        String filePath = candidat.getLettreMotivation();
+        return Files.readAllBytes(Path.of(URI.create(filePath)));
     }
 }

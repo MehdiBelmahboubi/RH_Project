@@ -41,6 +41,8 @@ public class IAuthenticateService implements AuthenticateService {
             return AuthenticationResponse.builder()
                     .token(jwtToken)
                     .nom(User.getNom())
+                    .prenom(User.getPrenom())
+                    .fonction(String.valueOf(User.getFonction()))
                     .message("User authenticated")
                     .role(User.getRole())
                     .build();
