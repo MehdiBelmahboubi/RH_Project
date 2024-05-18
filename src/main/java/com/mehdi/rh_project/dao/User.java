@@ -35,7 +35,7 @@ public class User implements UserDetails , Principal {
     private String photo;
 
     @Column(unique = true,nullable = false)
-    private int telephone;
+    private String telephone;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -70,19 +70,24 @@ public class User implements UserDetails , Principal {
     private Contrat_Type contrat;
 
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "departement_id")
     private Departement departement;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employes",cascade = CascadeType.ALL)
     private List<Conges> congesList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employes",cascade = CascadeType.ALL)
     private List<Horaire> horaireList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employes",cascade = CascadeType.ALL)
     private List<Performance> performanceListe;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employes",cascade = CascadeType.ALL)
     private List<Taches> tachesList ;
 

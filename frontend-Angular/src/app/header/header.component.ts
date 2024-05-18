@@ -27,7 +27,7 @@ export class HeaderComponent {
     localStorage.removeItem('role');
     localStorage.removeItem('fonction');
     localStorage.removeItem('prenom');
-    this.userName=null;
+    localStorage.removeItem('departement');
     this.router.navigate(['home']);
   }
 }

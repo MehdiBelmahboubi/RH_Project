@@ -17,4 +17,5 @@ public class AuthenticationResponse {
     private String message;
     private String token;
     private Role role;
+    private String Departement;
 }

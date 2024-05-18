@@ -12,4 +12,5 @@ public interface UserService {
     public MessageResponse deleteUser(String cin) throws Exception;
     public MessageResponse updateUser(String cin, UserRequest request) throws Exception;
     public List<User> findAllUser() throws Exception;
+    public List<User> findByDepartement(String NomDepartement) throws Exception;
 }

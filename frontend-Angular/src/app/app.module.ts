@@ -17,7 +17,7 @@ import {MatDrawer, MatDrawerContainer, MatDrawerContent, MatSidenav, MatSidenavC
 import {MatList, MatListItem, MatListModule} from "@angular/material/list";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './Admin-Interface/sidenav/sidenav.component';
 import { SidenavRhComponent } from './Rh-Interface/sidenav-rh/sidenav-rh.component';
@@ -31,6 +31,22 @@ import { RecrutementsRhComponent } from './Rh-Interface/recrutements-rh/recrutem
 import { TachesRhComponent } from './Rh-Interface/taches-rh/taches-rh.component';
 import { HoraireRhComponent } from './Rh-Interface/horaire-rh/horaire-rh.component';
 import { ProfileRhComponent } from './Rh-Interface/profile-rh/profile-rh.component';
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
+import {
+  MatCell,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable, MatTableModule
+} from "@angular/material/table";
+import {MatSort, MatSortHeader, MatSortModule} from "@angular/material/sort";
+import {MatPaginator} from "@angular/material/paginator";
+import { JwtInterceptor } from './interceptor/jwt-interceptor.interceptor';
+import { DashboardEmplComponent } from './Employes-Interface/dashboard-empl/dashboard-empl.component';
+import { SidenavEmplComponent } from './Employes-Interface/sidenav-empl/sidenav-empl.component';
 
 
 @NgModule({
@@ -53,25 +69,46 @@ import { ProfileRhComponent } from './Rh-Interface/profile-rh/profile-rh.compone
     TachesRhComponent,
     HoraireRhComponent,
     ProfileRhComponent,
+    DashboardEmplComponent,
+    SidenavEmplComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatDrawerContainer,
-        MatDrawer,
-        MatListModule,
-        MatListItem,
-        MatSidenavModule,
-        MatIconModule,
-        MatDividerModule,
-        FormsModule,
-        ReactiveFormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatDrawerContainer,
+    MatDrawer,
+    MatListModule,
+    MatListItem,
+    MatSidenavModule,
+    MatIconModule,
+    MatDividerModule,
+    FormsModule,
+    MatTableModule,
+    ReactiveFormsModule,
+    MatCard,
+    MatCardHeader,
+    MatCardContent,
+    MatCardTitle,
+    MatHeaderRow,
+    MatRow,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCell,
+    MatCell,
+    MatSortModule,
+    MatSortHeader,
+    MatSort,
+    MatPaginator,
+  ],
   providers: [
-    provideAnimationsAsync(),AuthGuard,AuthorizationGuard
+    provideAnimationsAsync(),AuthGuard,AuthorizationGuard,
+    HttpClient,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

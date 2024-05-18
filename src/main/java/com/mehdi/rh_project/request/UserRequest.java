@@ -18,7 +18,7 @@ public class UserRequest {
     private String prenom;
     private String photo;
     private String dateNsc;
-    private int telephone;
+    private String telephone;
     private String cnss;
     private Fonction_Type fonction;
     private String dateRecrutement;

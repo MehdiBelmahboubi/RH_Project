@@ -17,6 +17,8 @@ import { RecrutementsRhComponent } from './Rh-Interface/recrutements-rh/recrutem
 import { TachesRhComponent } from './Rh-Interface/taches-rh/taches-rh.component';
 import { HoraireRhComponent } from './Rh-Interface/horaire-rh/horaire-rh.component';
 import { ProfileRhComponent } from './Rh-Interface/profile-rh/profile-rh.component';
+import { SidenavEmplComponent } from './Employes-Interface/sidenav-empl/sidenav-empl.component';
+import { DashboardEmplComponent } from './Employes-Interface/dashboard-empl/dashboard-empl.component';
 
 
 const routes: Routes = [
@@ -42,7 +44,11 @@ const routes: Routes = [
     {path:"horaire",component:HoraireRhComponent},
     {path:"profile",component:ProfileRhComponent},
   ]},
-  
+  {path:"GsEmployes",component:SidenavEmplComponent,
+  canActivate:[AuthGuard,AuthorizationGuard],data : {role : "EMPLOYEE"},
+  children:[
+    {path:"dashboard",component:DashboardEmplComponent},
+  ]},
 ];
 
 @NgModule({

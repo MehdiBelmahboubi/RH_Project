@@ -46,4 +46,9 @@ public class UserController {
         return ResponseEntity.ok(Users);
     }
 
+    @GetMapping("/get/{nom}/departement")
+    public ResponseEntity<List<User>> getByDepartement(String nom) throws Exception {
+        List<User> user = UserService.findByDepartement(nom);
+        return ResponseEntity.ok(user);
+    }
 }

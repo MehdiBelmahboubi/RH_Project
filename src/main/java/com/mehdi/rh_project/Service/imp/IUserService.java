@@ -4,6 +4,7 @@ import com.mehdi.rh_project.Repository.DepartementRepository;
 import com.mehdi.rh_project.Repository.UserRepository;
 import com.mehdi.rh_project.dao.Departement;
 import com.mehdi.rh_project.dao.User;
+import com.mehdi.rh_project.enums.Role;
 import com.mehdi.rh_project.request.UserRequest;
 import com.mehdi.rh_project.response.AuthenticationResponse;
 import com.mehdi.rh_project.response.MessageResponse;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -102,5 +104,12 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
     @Override
     public List<User> findAllUser() {
         return repository.findAll();
+    }
+
+    @Override
+    public List<User> findByDepartement(String NomDepartement) throws Exception {
+        Departement departement = departementRepository.findByNom(NomDepartement);
+        Role role = Role.EMPLOYE;
+        return repository.findByDepartementAndRole(departement,role);
     }
 }
