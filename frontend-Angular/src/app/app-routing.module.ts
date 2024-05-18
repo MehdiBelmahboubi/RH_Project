@@ -19,8 +19,10 @@ import { HoraireRhComponent } from './Rh-Interface/horaire-rh/horaire-rh.compone
 import { ProfileRhComponent } from './Rh-Interface/profile-rh/profile-rh.component';
 import { SidenavEmplComponent } from './Employes-Interface/sidenav-empl/sidenav-empl.component';
 import { DashboardEmplComponent } from './Employes-Interface/dashboard-empl/dashboard-empl.component';
-
-
+import { TachesEmplComponent } from './Employes-Interface/taches-empl/taches-empl.component';
+import { HoraireEmplComponent } from './Employes-Interface/horaire-empl/horaire-empl.component';
+import { VacationsEmplComponent } from './Employes-Interface/vacations-empl/vacations-empl.component';
+import { ProfileEmplComponent } from './Employes-Interface/profile-empl/profile-empl.component';
 const routes: Routes = [
   {path:"",component:HomeTemplateComponent},
   {path:"home",component:HomeTemplateComponent},
@@ -45,9 +47,13 @@ const routes: Routes = [
     {path:"profile",component:ProfileRhComponent},
   ]},
   {path:"GsEmployes",component:SidenavEmplComponent,
-  canActivate:[AuthGuard,AuthorizationGuard],data : {role : "EMPLOYEE"},
+  canActivate:[AuthGuard,AuthorizationGuard],data : {role : "EMPLOYE"},
   children:[
     {path:"dashboard",component:DashboardEmplComponent},
+    {path:"taches",component:TachesEmplComponent},
+    {path:"horaire",component:HoraireEmplComponent},
+    {path:"vacations",component:VacationsEmplComponent},
+    {path:"profile",component:ProfileEmplComponent},
   ]},
 ];
 

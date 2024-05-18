@@ -32,6 +32,7 @@ import { TachesRhComponent } from './Rh-Interface/taches-rh/taches-rh.component'
 import { HoraireRhComponent } from './Rh-Interface/horaire-rh/horaire-rh.component';
 import { ProfileRhComponent } from './Rh-Interface/profile-rh/profile-rh.component';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
+
 import {
   MatCell,
   MatColumnDef,
@@ -47,6 +48,10 @@ import {MatPaginator} from "@angular/material/paginator";
 import { JwtInterceptor } from './interceptor/jwt-interceptor.interceptor';
 import { DashboardEmplComponent } from './Employes-Interface/dashboard-empl/dashboard-empl.component';
 import { SidenavEmplComponent } from './Employes-Interface/sidenav-empl/sidenav-empl.component';
+import { TachesEmplComponent } from './Employes-Interface/taches-empl/taches-empl.component';
+import { HoraireEmplComponent } from './Employes-Interface/horaire-empl/horaire-empl.component';
+import { VacationsEmplComponent } from './Employes-Interface/vacations-empl/vacations-empl.component';
+import { ProfileEmplComponent } from './Employes-Interface/profile-empl/profile-empl.component';
 
 
 @NgModule({
@@ -71,6 +76,10 @@ import { SidenavEmplComponent } from './Employes-Interface/sidenav-empl/sidenav-
     ProfileRhComponent,
     DashboardEmplComponent,
     SidenavEmplComponent,
+    TachesEmplComponent,
+    HoraireEmplComponent,
+    VacationsEmplComponent,
+    ProfileEmplComponent,
   ],
   imports: [
     BrowserModule,
