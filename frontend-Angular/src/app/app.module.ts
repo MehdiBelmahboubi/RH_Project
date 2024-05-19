@@ -35,6 +35,7 @@ import { TachesRhComponent } from './Rh-Interface/taches-rh/taches-rh.component'
 import { HoraireRhComponent } from './Rh-Interface/horaire-rh/horaire-rh.component';
 import { ProfileRhComponent } from './Rh-Interface/profile-rh/profile-rh.component';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
+
 import {
   MatCell,
   MatColumnDef,
@@ -52,12 +53,16 @@ import { DashboardEmplComponent } from './Employes-Interface/dashboard-empl/dash
 import { SidenavEmplComponent } from './Employes-Interface/sidenav-empl/sidenav-empl.component';
 import { AddEditEmployesComponent } from './Rh-Interface/employes-rh/add-edit-employes/add-edit-employes.component';
 import { MatDialog, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
-import { MatStepperModule }  
+import { MatStepperModule }
     from '@angular/material/stepper'
 import { MatFormFieldModule, MatPrefix } from '@angular/material/form-field';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatOptionModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { TachesEmplComponent } from './Employes-Interface/taches-empl/taches-empl.component';
+import { HoraireEmplComponent } from './Employes-Interface/horaire-empl/horaire-empl.component';
+import { VacationsEmplComponent } from './Employes-Interface/vacations-empl/vacations-empl.component';
+import {ProfileEmplComponent} from "./Employes-Interface/profile-empl/profile-empl.component";
 
 
 @NgModule({
@@ -86,7 +91,10 @@ import { MatSelectModule } from '@angular/material/select';
     DashboardEmplComponent,
     SidenavEmplComponent,
     EmployesComponent,
-    
+    TachesEmplComponent,
+    HoraireEmplComponent,
+    VacationsEmplComponent,
+    ProfileEmplComponent,
   ],
   imports: [
     BrowserModule,
