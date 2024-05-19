@@ -1,0 +1,144 @@
+<div mat-dialog-title class="header">
+    <h1>Employee Form</h1>
+    <mat-icon mat-dialog-close #close_button class="close-button">clear</mat-icon>
+</div>
+<div mat-dialog-content>
+    <mat-stepper #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup" class="step-form">
+                <ng-template matStepLabel>Information Personnel</ng-template>
+                <div class="formGroup">
+                    <div class="form-row">
+                        <mat-form-field class="form-field">
+                            <mat-label>Cin</mat-label>
+                            <input matInput placeholder="Cin" formControlName="cin" required>
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <mat-label>Photo</mat-label>
+                            <div class="file-input-container">
+                                <button type="button" mat-icon-button mat-Prefix (click)="f_input.click()">
+                                    <mat-icon>attach_file</mat-icon>
+                                </button>
+                                <input matInput readonly formControlName="photoName">
+                            </div>
+                            <input type="file" hidden #f_input (change)="selectPhoto($event)" accept="image/png">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field class="form-field">
+                            <mat-label>Nom</mat-label>
+                            <input matInput placeholder="Nom" formControlName="nom" required>
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <mat-label>Prenom</mat-label>
+                            <input matInput placeholder="Prenom" formControlName="prenom" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field class="form-field">
+                            <mat-label>Date Naissance</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="dateNsc">
+                            <mat-hint>DD/MM/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <mat-label>Telephone</mat-label>
+                            <span matTextPrefix>+212 &nbsp;</span>
+                            <input type="tel" matInput placeholder="777-666-888" formControlName="telephone">
+                            <mat-icon matSuffix>mode_edit</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="header">
+                        <button mat-mini-fab color="primary" matStepperNext class="right-button">
+                            <mat-icon>arrow_forward</mat-icon>
+                          </button>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Informations Professionls</ng-template>
+                <div class="formGroup">
+                    <div class="form-row">
+                        <mat-form-field class="form-field">
+                            <mat-label>Salaire</mat-label>
+                            <input matInput placeholder="Salaire" formControlName="salaire" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field class="form-field">
+                            <mat-label>Contart</mat-label>
+                            <mat-select formControlName="contrat" required>
+                                @for (contrat of contrats; track contrat) {
+                                <mat-option [value]="contrat.value">{{contrat.viewValue}}</mat-option>
+                                }
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <mat-label>Fonctions</mat-label>
+                            <mat-select formControlName="fonction" required>
+                                @for (fonction of fonctions; track fonction) {
+                                <mat-option [value]="fonction.value">{{fonction.viewValue}}</mat-option>
+                                }
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field class="form-field">
+                            <mat-label>Cnss</mat-label>
+                            <input matInput formControlName="cnss" required>
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <mat-label>Date Recrutement</mat-label>
+                            <input matInput [matDatepicker]="picker2" formControlName="dateRecrutement">
+                            <mat-hint>DD/MM/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="header">
+                        <button mat-mini-fab color="primary" matStepperPrevious >
+                            <mat-icon>arrow_back</mat-icon>
+                          </button>
+                          <button mat-mini-fab color="primary" matStepperNext class="right-button">
+                            <mat-icon>arrow_forward</mat-icon>
+                          </button>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Informations Authentifications</ng-template>
+                <div class="formGroup">
+                    <div class="form-row">
+                        <mat-form-field class="form-field">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email"
+                            placeholder="Ex. pat@example.com" formControlName="email" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field class="form-field">
+                            <mat-label>Mot De Passe</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                          </mat-form-field>
+                    </div>
+                </div>
+                <div class="header">
+                    <button mat-mini-fab color="primary" matStepperPrevious >
+                        <mat-icon>arrow_back</mat-icon>
+                      </button>
+                      <button mat-mini-fab color="primary" (click)="onSubmit()" class="right-button">
+                        <mat-icon>check</mat-icon>
+                      </button>
+                </div>
+            </form>
+        </mat-step>
+    </mat-stepper>
+</div>

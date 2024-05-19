@@ -6,6 +6,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import { MessageResponse } from '../../models/message-response';
 import { MatDialog } from '@angular/material/dialog';
+import { AddEditEmployesComponent } from './add-edit-employes/add-edit-employes.component';
 
 @Component({
   selector: 'app-employes-rh',
@@ -22,7 +23,7 @@ export class EmployesRhComponent implements OnInit {
   displayedColumns : string[] = ['cin','nom','prenom','dateNsc','telephone','email','contrat','fonction','salaire','cnss','dateRecrutement','modifier','supprimer','details'];
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! : MatSort;
-  constructor(private employesService : EmployesService){
+  constructor(private employesService : EmployesService,private dialog : MatDialog){
   }
 
   ngOnInit(){
@@ -65,5 +66,7 @@ export class EmployesRhComponent implements OnInit {
     }
   }
 
-
+  openAddEditForm(){
+    this.dialog.open(AddEditEmployesComponent,{width: '1000px'});
+  }
 }

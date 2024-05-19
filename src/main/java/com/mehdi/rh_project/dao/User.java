@@ -32,6 +32,8 @@ public class User implements UserDetails , Principal {
     @Column(nullable = false)
     private String prenom;
 
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private String photo;
 
     @Column(unique = true,nullable = false)
@@ -47,7 +49,7 @@ public class User implements UserDetails , Principal {
     private Role role;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
     private String dateNsc;
 
 
@@ -59,7 +61,7 @@ public class User implements UserDetails , Principal {
     private Fonction_Type fonction;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
     private String dateRecrutement;
 
     @Column(nullable = false)

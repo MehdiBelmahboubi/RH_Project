@@ -1,14 +1,21 @@
 package com.mehdi.rh_project.Service;
 
 import com.mehdi.rh_project.dao.User;
+import com.mehdi.rh_project.enums.Contrat_Type;
+import com.mehdi.rh_project.enums.Fonction_Type;
+import com.mehdi.rh_project.enums.Role;
 import com.mehdi.rh_project.request.UserRequest;
 import com.mehdi.rh_project.response.AuthenticationResponse;
 import com.mehdi.rh_project.response.MessageResponse;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface UserService {
-    public AuthenticationResponse createUser(UserRequest request) throws Exception;
+    public AuthenticationResponse createUser(MultipartFile photo , String cin,String cnss, Contrat_Type contrat, String dateNsc,
+                                             String dateRecrutement, String departement, String email, Fonction_Type fonction,
+                                             String nom, String password, String prenom,
+                                             float salaire, String telephone, Role role) throws Exception;
     public MessageResponse deleteUser(String cin) throws Exception;
     public MessageResponse updateUser(String cin, UserRequest request) throws Exception;
     public List<User> findAllUser() throws Exception;

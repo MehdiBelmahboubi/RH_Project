@@ -4,6 +4,8 @@ import com.mehdi.rh_project.Repository.DepartementRepository;
 import com.mehdi.rh_project.Repository.UserRepository;
 import com.mehdi.rh_project.dao.Departement;
 import com.mehdi.rh_project.dao.User;
+import com.mehdi.rh_project.enums.Contrat_Type;
+import com.mehdi.rh_project.enums.Fonction_Type;
 import com.mehdi.rh_project.enums.Role;
 import com.mehdi.rh_project.request.UserRequest;
 import com.mehdi.rh_project.response.AuthenticationResponse;
@@ -12,7 +14,11 @@ import com.mehdi.rh_project.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,31 +30,39 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     @Override
-    public AuthenticationResponse createUser(UserRequest request) {
-        User user = repository.findByEmail(request.getEmail());
+    public AuthenticationResponse createUser(MultipartFile photo , String cin, String cnss, Contrat_Type contrat, String dateNsc, String dateRecrutement,
+                                             String departement, String email, Fonction_Type fonction, String nom, String password, String prenom,
+                                             float salaire, String telephone, Role role) throws IOException {
+        User user = repository.findByEmail(email);
         if (user != null) {
             throw new IllegalArgumentException("Email address is already in use");
         }
-        Departement departement = departementRepository.findByNom(request.getDepartement());
-        if(departement==null){
+        Departement departement1 = departementRepository.findByNom(departement);
+        if(departement1==null){
             return AuthenticationResponse.builder().message("Departement Not Found").build();
         }
+
+        String fileName = StringUtils.cleanPath(photo.getOriginalFilename());
+        if(fileName.contains("..")){
+            return AuthenticationResponse.builder().message("Not a valid Image").build();
+        }
+
         var usercreate = User.builder()
-                .cin(request.getCin())
-                .nom(request.getNom())
-                .prenom(request.getPrenom())
-                .photo(request.getPhoto())
-                .cnss(request.getCnss())
-                .dateNsc(request.getDateNsc())
-                .dateRecrutement(request.getDateRecrutement())
-                .contrat(request.getContrat())
-                .fonction(request.getFonction())
-                .salaire(request.getSalaire())
-                .telephone(request.getTelephone())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
-                .departement(departement)
+                .cin(cin)
+                .nom(nom)
+                .prenom(prenom)
+                .photo(Base64.getEncoder().encodeToString(photo.getBytes()))
+                .cnss(cnss)
+                .dateNsc(dateNsc)
+                .dateRecrutement(dateRecrutement)
+                .contrat(contrat)
+                .fonction(fonction)
+                .salaire(salaire)
+                .telephone(telephone)
+                .email(email)
+                .password(passwordEncoder.encode(password))
+                .role(role)
+                .departement(departement1)
                 .build();
         repository.save(usercreate);
         var jwtToken = jwtService.generateToken(usercreate);

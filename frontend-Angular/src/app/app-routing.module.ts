@@ -20,7 +20,6 @@ import { ProfileRhComponent } from './Rh-Interface/profile-rh/profile-rh.compone
 import { SidenavEmplComponent } from './Employes-Interface/sidenav-empl/sidenav-empl.component';
 import { DashboardEmplComponent } from './Employes-Interface/dashboard-empl/dashboard-empl.component';
 
-
 const routes: Routes = [
   {path:"",component:HomeTemplateComponent},
   {path:"home",component:HomeTemplateComponent},
@@ -45,7 +44,7 @@ const routes: Routes = [
     {path:"profile",component:ProfileRhComponent},
   ]},
   {path:"GsEmployes",component:SidenavEmplComponent,
-  canActivate:[AuthGuard,AuthorizationGuard],data : {role : "EMPLOYEE"},
+  canActivate:[AuthGuard,AuthorizationGuard],data : {role : "EMPLOYE"},
   children:[
     {path:"dashboard",component:DashboardEmplComponent},
   ]},

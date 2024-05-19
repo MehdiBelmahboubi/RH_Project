@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import { environment } from '../../environments/environment.development';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { UserRequest } from '../models/user-request';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,9 @@ export class EmployesService {
 
   public deleteUser(cin:string){
     return this.http.delete<any>(`${environment.backendHost}/user/delete/${cin}`)
+  }
+
+  addUser(formData:FormData) {
+    return this.http.post<any>(`${environment.backendHost}/user/create`, formData);
   }
 }
