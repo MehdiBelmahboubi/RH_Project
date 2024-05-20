@@ -63,6 +63,8 @@ import { TachesEmplComponent } from './Employes-Interface/taches-empl/taches-emp
 import { HoraireEmplComponent } from './Employes-Interface/horaire-empl/horaire-empl.component';
 import { VacationsEmplComponent } from './Employes-Interface/vacations-empl/vacations-empl.component';
 import {ProfileEmplComponent} from "./Employes-Interface/profile-empl/profile-empl.component";
+import { UserDetailsComponent } from './Rh-Interface/employes-rh/user-details/user-details.component';
+import { DemandeCongesComponent } from './Rh-Interface/vacations-rh/demande-conges/demande-conges.component';
 
 
 @NgModule({
@@ -95,6 +97,8 @@ import {ProfileEmplComponent} from "./Employes-Interface/profile-empl/profile-em
     HoraireEmplComponent,
     VacationsEmplComponent,
     ProfileEmplComponent,
+    UserDetailsComponent,
+    DemandeCongesComponent,
   ],
   imports: [
     BrowserModule,

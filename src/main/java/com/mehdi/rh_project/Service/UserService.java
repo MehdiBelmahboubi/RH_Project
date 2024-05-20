@@ -17,7 +17,10 @@ public interface UserService {
                                              String nom, String password, String prenom,
                                              float salaire, String telephone, Role role) throws Exception;
     public MessageResponse deleteUser(String cin) throws Exception;
-    public MessageResponse updateUser(String cin, UserRequest request) throws Exception;
+    public MessageResponse updateUser(MultipartFile photo , String cin,String cnss, Contrat_Type contrat, String dateNsc,
+                                      String dateRecrutement, String departement, String email, Fonction_Type fonction,
+                                      String nom, String password, String prenom,
+                                      float salaire, String telephone, Role role) throws Exception;
     public List<User> findAllUser() throws Exception;
     public List<User> findByDepartement(String NomDepartement) throws Exception;
 }

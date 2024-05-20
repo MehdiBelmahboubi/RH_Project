@@ -21,7 +21,11 @@ export class EmployesService {
     return this.http.delete<any>(`${environment.backendHost}/user/delete/${cin}`)
   }
 
-  addUser(formData:FormData) {
+  public addUser(formData:FormData) {
     return this.http.post<any>(`${environment.backendHost}/user/create`, formData);
+  }
+
+  public modifyUser(formData:FormData,cin:string) {
+    return this.http.put<any>(`${environment.backendHost}/user/update/{cin}?cin=${cin}`, formData);
   }
 }

@@ -1,0 +1,156 @@
+<div mat-dialog-title class="header">
+    <h1>Details</h1>
+    <mat-icon mat-dialog-close #close_button class="close-button">clear</mat-icon>
+</div>
+<div mat-dialog-content>
+    <mat-stepper #stepper>
+        <mat-step state="assignment">
+            <ng-template matStepLabel>Taches</ng-template>
+            <div class="formGroup">
+                <table matSort mat-table [dataSource]="tachesDataSource">
+                    <ng-container matColumnDef="dateDebut">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Debut</th>
+                        <td mat-cell *matCellDef="let taches"> {{taches.dateDebut}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateFin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Fin</th>
+                        <td mat-cell *matCellDef="let taches"> {{taches.dateFin}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="etat">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Etat</th>
+                        <td mat-cell *matCellDef="let taches"> {{taches.etat}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                        <td mat-cell *matCellDef="let taches"> {{taches.description}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="modifier">
+                        <th mat-header-cell *matHeaderCellDef>Modifier</th>
+                        <td mat-cell *matCellDef="let taches">
+                            <button mat-icon-button>
+                                <mat-icon>create</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="supprimer">
+                        <th mat-header-cell *matHeaderCellDef>Supprimer</th>
+                        <td mat-cell *matCellDef="let taches">
+                            <button mat-icon-button color="warn">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedtachesColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedtachesColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[4, 8, 16]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+        </mat-step>
+        <mat-step state="weekend">
+            <ng-template matStepLabel>Vacances</ng-template>
+            <div class="formGroup">
+                <table matSort mat-table [dataSource]="congesDataSource">
+                    <ng-container matColumnDef="dateDemande">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Demande</th>
+                        <td mat-cell *matCellDef="let conges"> {{conges.dateDemande}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateDebut">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Debut</th>
+                        <td mat-cell *matCellDef="let conges"> {{conges.dateDebut}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateFin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Fin</th>
+                        <td mat-cell *matCellDef="let conges"> {{conges.dateFin}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="periode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Periode</th>
+                        <td mat-cell *matCellDef="let conges"> {{conges.periode}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                        <td mat-cell *matCellDef="let conges"> {{conges.type}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="etat">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Etat</th>
+                        <td mat-cell *matCellDef="let conges"> {{conges.etat}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                        <td mat-cell *matCellDef="let conges"> {{conges.description}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="modifier">
+                        <th mat-header-cell *matHeaderCellDef>Modifier</th>
+                        <td mat-cell *matCellDef="let conges">
+                            <button mat-icon-button>
+                                <mat-icon>create</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="supprimer">
+                        <th mat-header-cell *matHeaderCellDef>Supprimer</th>
+                        <td mat-cell *matCellDef="let conges">
+                            <button mat-icon-button color="warn">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedcongesColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedcongesColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[4, 8, 16]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+        </mat-step>
+        <mat-step state="today">
+            <ng-template matStepLabel>Horaires</ng-template>
+            <div class="formGroup">
+                <table matSort mat-table [dataSource]="horaireDataSource">
+                    <ng-container matColumnDef="heureTravaille">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Heure Travaille</th>
+                        <td mat-cell *matCellDef="let horaire"> {{horaire.heureTravaille}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="jour">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Jour</th>
+                        <td mat-cell *matCellDef="let horaire"> {{horaire.jour}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="modifier">
+                        <th mat-header-cell *matHeaderCellDef>Modifier</th>
+                        <td mat-cell *matCellDef="let horaire">
+                            <button mat-icon-button>
+                                <mat-icon>create</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="supprimer">
+                        <th mat-header-cell *matHeaderCellDef>Supprimer</th>
+                        <td mat-cell *matCellDef="let horaire">
+                            <button mat-icon-button color="warn">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedhoraireColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedhoraireColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[4, 8, 16]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+        </mat-step>
+        <ng-template matStepperIcon="weekend">
+            <mat-icon>weekend</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="assignment">
+            <mat-icon>assignment</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="dashboard">
+            <mat-icon>dashboard</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="today">
+            <mat-icon>today</mat-icon>
+        </ng-template>
+    </mat-stepper>
+</div>

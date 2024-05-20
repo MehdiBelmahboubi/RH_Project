@@ -44,10 +44,10 @@ public class CongeController {
         return ResponseEntity.ok(congeService.declineConge(id));
     }
 
-    @GetMapping("/get/{id}/employee")
+    @GetMapping("/get/{cin}/employee")
     public ResponseEntity<List<Conges>> findByEmployee(
-            @PathVariable String id
+            @PathVariable String cin
     ) throws Exception {
-        return ResponseEntity.ok(congeService.findByEmployee(id));
+        return ResponseEntity.ok(congeService.findByEmployee(cin));
     }
 }

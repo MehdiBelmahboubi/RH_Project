@@ -1,5 +1,5 @@
 <div mat-dialog-title class="header">
-    <h1>Employee Form</h1>
+    <h1>{{data ? 'Update Emlpoyee' : 'Add Employee'}}</h1>
     <mat-icon mat-dialog-close #close_button class="close-button">clear</mat-icon>
 </div>
 <div mat-dialog-content>
@@ -10,9 +10,9 @@
                 <div class="formGroup">
                     <div class="form-row">
                         <mat-form-field class="form-field">
-                            <mat-label>Cin</mat-label>
-                            <input matInput placeholder="Cin" formControlName="cin" required>
-                        </mat-form-field>
+                            <mat-label>{{ data ? 'Cin disabled' : 'Cin' }}</mat-label>
+                            <input matInput placeholder="Cin" formControlName="cin" [disabled]="!!data" required>
+                          </mat-form-field>                          
                         <mat-form-field class="form-field">
                             <mat-label>Photo</mat-label>
                             <div class="file-input-container">
@@ -44,8 +44,8 @@
                         </mat-form-field>
                         <mat-form-field class="form-field">
                             <mat-label>Telephone</mat-label>
-                            <span matTextPrefix>+212 &nbsp;</span>
-                            <input type="tel" matInput placeholder="777-666-888" formControlName="telephone">
+                            <span matTextPrefix> &nbsp;</span>
+                            <input type="tel" matInput placeholder="0-###-###-###" formControlName="telephone">
                             <mat-icon matSuffix>mode_edit</mat-icon>
                         </mat-form-field>
                     </div>

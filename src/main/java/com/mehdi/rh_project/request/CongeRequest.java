@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CongeRequest {
     private Long id;
-    private String dateDemande;
     private String dateDebut;
     private String dateFin;
     private Long periode;

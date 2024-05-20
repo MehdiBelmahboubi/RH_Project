@@ -4,7 +4,7 @@ export interface CongeRequest {
   dateDebut?: string;
   dateDemande?: string;
   dateFin?: string;
-  employes?: string;
+  employes: string | null;
   etat?: 'Accepter' | 'EnCours' | 'Refuser';
   id?: number;
   periode?: number;

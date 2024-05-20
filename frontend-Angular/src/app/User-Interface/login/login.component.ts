@@ -30,6 +30,7 @@ export class LoginComponent {
     this.loginservice.login(email,password).subscribe({
       next: (response: AuthenticateResponse) => {
         localStorage.setItem('token',response.token);
+        localStorage.setItem('cin',response.cin);
         localStorage.setItem('nom',response.nom);
         localStorage.setItem('prenom',response.prenom);
         localStorage.setItem('fonction',response.fonction);

@@ -11,6 +11,7 @@ import com.mehdi.rh_project.response.MessageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class ICongeService implements CongeService {
             return MessageResponse.builder().message("Employee Not Found").build();
         }
         var congeCreated = Conges.builder()
-                .dateDemande(request.getDateDemande())
+                .dateDemande(LocalDate.now().toString())
                 .dateDebut(request.getDateDebut())
                 .dateFin(request.getDateFin())
                 .periode(request.getPeriode())

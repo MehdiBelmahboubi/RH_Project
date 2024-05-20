@@ -29,10 +29,10 @@ public class HoraireController {
         return ResponseEntity.ok(horaireService.delete(id));
     }
 
-    @GetMapping("/get/{id}/employee")
+    @GetMapping("/get/{cin}/employee")
     public ResponseEntity<List<Horaire>> findByEmployee(
-            @PathVariable String id
+            @PathVariable String cin
     ) throws Exception {
-        return ResponseEntity.ok(horaireService.findByEmployee(id));
+        return ResponseEntity.ok(horaireService.findByEmployee(cin));
     }
 }

@@ -43,6 +43,7 @@ public class IAuthenticateService implements AuthenticateService {
                     .nom(User.getNom())
                     .prenom(User.getPrenom())
                     .fonction(String.valueOf(User.getFonction()))
+                    .cin(User.getCin())
                     .message("User authenticated")
                     .Departement(User.getDepartement().getNom())
                     .role(User.getRole())

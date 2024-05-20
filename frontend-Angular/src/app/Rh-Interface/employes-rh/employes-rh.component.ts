@@ -7,6 +7,9 @@ import {MatSort} from "@angular/material/sort";
 import { MessageResponse } from '../../models/message-response';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditEmployesComponent } from './add-edit-employes/add-edit-employes.component';
+import { SidenavEmplComponent } from '../../Employes-Interface/sidenav-empl/sidenav-empl.component';
+import { Router } from '@angular/router';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @Component({
   selector: 'app-employes-rh',
@@ -14,7 +17,6 @@ import { AddEditEmployesComponent } from './add-edit-employes/add-edit-employes.
   styleUrl: './employes-rh.component.css'
 })
 export class EmployesRhComponent implements OnInit {
-
   errorMessage: string | null = null;
   validation: string | null = null;
   nom: string | null = null;
@@ -23,7 +25,7 @@ export class EmployesRhComponent implements OnInit {
   displayedColumns : string[] = ['cin','nom','prenom','dateNsc','telephone','email','contrat','fonction','salaire','cnss','dateRecrutement','modifier','supprimer','details'];
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! : MatSort;
-  constructor(private employesService : EmployesService,private dialog : MatDialog){
+  constructor(private employesService : EmployesService,private dialog : MatDialog,private router:Router){
   }
 
   ngOnInit(){
@@ -45,8 +47,10 @@ export class EmployesRhComponent implements OnInit {
     }
   }
 
-  updateUser(_t158: any) {
-    throw new Error('Method not implemented.');
+  openEditForm(data:any) {
+    this.dialog.open(AddEditEmployesComponent,{
+      data,
+      width: '1000px'});
     }
 
 
@@ -68,5 +72,9 @@ export class EmployesRhComponent implements OnInit {
 
   openAddEditForm(){
     this.dialog.open(AddEditEmployesComponent,{width: '1000px'});
+  }
+
+  openUserDetails(data: any) {
+    this.dialog.open(UserDetailsComponent,{data,width:'1400px'})
   }
 }

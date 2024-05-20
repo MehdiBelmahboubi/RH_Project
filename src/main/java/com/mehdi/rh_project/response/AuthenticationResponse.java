@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationResponse {
     private String nom;
+    private String cin;
     private String prenom;
     private String fonction;
     private String message;

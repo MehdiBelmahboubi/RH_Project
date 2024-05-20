@@ -1,0 +1,45 @@
+<div mat-dialog-title class="header">
+    <h1>Demande Conges</h1>
+    <mat-icon mat-dialog-close #close_button class="close-button">clear</mat-icon>
+</div>
+<div mat-dialog-content>
+    <form [formGroup]="congesFromGroup" class="step-form">
+        <div class="formGroup">
+            <div class="form-row">
+                <mat-form-field class="form-field">
+                    <mat-label>Date Debut</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dateDebut">
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-field">
+                    <mat-label>Date Fin</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="dateFin">
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="form-row">
+                <mat-form-field class="form-field">
+                    <mat-label>Type</mat-label>
+                    <mat-select formControlName="type" required>
+                        @for (type of types; track type) {
+                        <mat-option [value]="type.value">{{type.viewValue}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-field">
+                    <mat-label>Periode</mat-label>
+                    <input matInput placeholder="Periode" formControlName="periode" required>
+                </mat-form-field>
+            </div>
+            <div class="header">
+                <button mat-mini-fab color="primary" (click)="onSubmit()" class="right-button">
+                    <mat-icon>check</mat-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -52,11 +52,24 @@ public class UserController {
     }
 
     @PutMapping("/update/{cin}")
-    public ResponseEntity<MessageResponse>  delete(
-            @RequestBody UserRequest request,
-            @PathVariable String cin
+    public ResponseEntity<MessageResponse>  update(
+            @RequestParam("photo") MultipartFile photo,
+            @RequestParam("cin") String cin,
+            @RequestParam("cnss") String cnss,
+            @RequestParam("contrat") Contrat_Type contrat,
+            @RequestParam("dateNsc") String dateNsc,
+            @RequestParam("dateRecrutement") String dateRecrutement,
+            @RequestParam("departement") String departement,
+            @RequestParam("email") String email,
+            @RequestParam("fonction") Fonction_Type fonction,
+            @RequestParam("nom") String nom,
+            @RequestParam("password") String password,
+            @RequestParam("prenom") String prenom,
+            @RequestParam("salaire") float salaire,
+            @RequestParam("telephone") String telephone,
+            @RequestParam("role") Role role
     ) throws Exception {
-        return ResponseEntity.ok(UserService.updateUser(cin,request));
+        return ResponseEntity.ok(UserService.updateUser(photo, cin, cnss, contrat, dateNsc, dateRecrutement, departement, email, fonction, nom, password, prenom, salaire, telephone, role));
     }
 
     @GetMapping("/get/all")

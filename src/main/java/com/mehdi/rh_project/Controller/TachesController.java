@@ -44,10 +44,10 @@ public class TachesController {
         return ResponseEntity.ok(tachesService.tacheEnRetard(id));
     }
 
-    @GetMapping("/get/{id}/employee")
+    @GetMapping("/get/{cin}/employee")
     public ResponseEntity<List<Taches>> Retard(
-            @PathVariable String id
+            @PathVariable String cin
     ) throws Exception{
-        return ResponseEntity.ok(tachesService.findByEmployee(id));
+        return ResponseEntity.ok(tachesService.findByEmployee(cin));
     }
 }

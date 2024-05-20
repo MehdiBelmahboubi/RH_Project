@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserRequest } from '../../../models/user-request';
 import { EmployesService } from '../../../service/employes.service';
 import { MessageResponse } from '../../../models/message-response';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 interface Contrat {
   value: string;
@@ -41,11 +42,14 @@ export class AddEditEmployesComponent implements OnInit {
   ];
 
 
-  constructor(private _formBuilder: FormBuilder, private employesService: EmployesService) { }
+  constructor(private _formBuilder: FormBuilder, 
+    private employesService: EmployesService,
+    @Inject(MAT_DIALOG_DATA) public data : any
+  ) { }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.firstFormGroup = this._formBuilder.group({
-      cin: ['', Validators.required],
+      cin: [{ value: '', disabled: !!this.data }, Validators.required],
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       telephone: ['', [Validators.required, Validators.pattern(/^(?:\+212|0)[5-7]\d{8}$/)]],
@@ -64,6 +68,30 @@ export class AddEditEmployesComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
+    if (this.data) {
+      this.firstFormGroup.patchValue({
+        ...this.data,
+        dateNsc: this.formatDate(this.data.dateNsc), 
+      });
+  
+      this.secondFormGroup.patchValue({
+        ...this.data,
+        dateRecrutement: this.formatDate(this.data.dateRecrutement)  
+      });
+    }
+  }
+
+  formatDate(date: any): string {
+    if (!date) return '';
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+  
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+  
+    return [day, month, year].join('/');
   }
 
   onSubmit() {
@@ -87,18 +115,47 @@ export class AddEditEmployesComponent implements OnInit {
     formData.set('telephone', this.firstFormGroup.value.telephone);
     formData.set('role', 'EMPLOYE');
     formData.set('photo', this.Photo);
-
-    this.employesService.addUser(formData).subscribe({
-      next: (response: MessageResponse) => {
-        this.validation = response.message;
-        alert(this.validation);
-        window.location.reload();
-      },
-      error: () => {
-        this.errorMessage = "Error Adding";
-        alert(this.errorMessage);
+    const formData2 = new FormData();
+    formData2.set('cnss', this.secondFormGroup.value.cnss);
+    formData2.set('contrat', this.secondFormGroup.value.contrat);
+    formData2.set('dateNsc', dateNscFormat);
+    formData2.set('dateRecrutement', dateRecrutementFormat);
+    formData2.set('departement', localStorage.getItem('departement') || '');
+    formData2.set('email', this.thirdFormGroup.value.email);
+    formData2.set('fonction', this.secondFormGroup.value.fonction);
+    formData2.set('nom', this.firstFormGroup.value.nom);
+    formData2.set('password', this.thirdFormGroup.value.password);
+    formData2.set('prenom', this.firstFormGroup.value.prenom);
+    formData2.set('salaire', this.secondFormGroup.value.salaire);
+    formData2.set('telephone', this.firstFormGroup.value.telephone);
+    formData2.set('role', 'EMPLOYE');
+    formData2.set('photo', this.Photo);
+    if(this.data)
+      {
+        this.employesService.modifyUser(formData2,this.data.cin).subscribe({
+          next: (response: MessageResponse) => {
+            this.validation = response.message;
+            alert(this.validation);
+            window.location.reload();
+          },
+          error: () => {
+            this.errorMessage = "Error Adding";
+            alert(this.errorMessage);
+          }
+        })
+      }else{
+        this.employesService.addUser(formData).subscribe({
+          next: (response: MessageResponse) => {
+            this.validation = response.message;
+            alert(this.validation);
+            window.location.reload();
+          },
+          error: () => {
+            this.errorMessage = "Error Adding";
+            alert(this.errorMessage);
+          }
+        })
       }
-    })
   }
 
   selectPhoto(event: any) {
@@ -111,6 +168,4 @@ export class AddEditEmployesComponent implements OnInit {
       })
     }
   }
-
-
 }

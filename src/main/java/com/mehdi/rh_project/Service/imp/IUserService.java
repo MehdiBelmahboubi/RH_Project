@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,8 +28,9 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
     private final DepartementRepository departementRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+
     @Override
-    public AuthenticationResponse createUser(MultipartFile photo , String cin, String cnss, Contrat_Type contrat, String dateNsc, String dateRecrutement,
+    public AuthenticationResponse createUser(MultipartFile photo, String cin, String cnss, Contrat_Type contrat, String dateNsc, String dateRecrutement,
                                              String departement, String email, Fonction_Type fonction, String nom, String password, String prenom,
                                              float salaire, String telephone, Role role) throws IOException {
         User user = repository.findByEmail(email);
@@ -38,7 +38,7 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
             throw new IllegalArgumentException("Email address is already in use");
         }
         Departement departement1 = departementRepository.findByNom(departement);
-        if(departement1==null){
+        if(departement1 == null){
             return AuthenticationResponse.builder().message("Departement Not Found").build();
         }
 
@@ -77,8 +77,7 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
     @Override
     public MessageResponse deleteUser(String cin) {
         User user = repository.findByCin(cin);
-        if(user==null)
-        {
+        if(user == null) {
             return MessageResponse.builder().message("User not Found").build();
         }
         repository.delete(user);
@@ -86,31 +85,41 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
     }
 
     @Override
-    public MessageResponse updateUser(String cin, UserRequest request) {
-        Departement departement = departementRepository.findByNom(request.getDepartement());
+    public MessageResponse updateUser(MultipartFile photo , String cin,String cnss, Contrat_Type contrat, String dateNsc,
+                                      String dateRecrutement, String departement, String email, Fonction_Type fonction,
+                                      String nom, String password, String prenom,
+                                      float salaire, String telephone, Role role) throws IOException {
+        Departement departement1 = departementRepository.findByNom(departement);
         User user = repository.findByCin(cin);
-        if(user==null)
-        {
+        if(user == null) {
             return MessageResponse.builder().message("User not Found").build();
         }
-        user.setNom(request.getNom());
-        user.setPrenom(request.getPrenom());
-        user.setPhoto(request.getPhoto());
-        user.setDateNsc(request.getDateNsc());
-        user.setTelephone(request.getTelephone());
-        user.setCnss(request.getCnss());
-        user.setFonction(request.getFonction());
-        user.setDateRecrutement(request.getDateRecrutement());
-        user.setSalaire(request.getSalaire());
-        user.setContrat(request.getContrat());
-        user.setEmail(request.getEmail());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(request.getRole());
+
+        if (photo != null && !photo.isEmpty()) {
+            String fileName = StringUtils.cleanPath(photo.getOriginalFilename());
+            if (fileName.contains("..")) {
+                return MessageResponse.builder().message("Not a valid Image").build();
+            }
+            user.setPhoto(Base64.getEncoder().encodeToString(photo.getBytes()));
+        }
+
+        user.setNom(nom);
+        user.setPrenom(prenom);
+        user.setDateNsc(dateNsc);
+        user.setTelephone(telephone);
+        user.setCnss(cnss);
+        user.setFonction(fonction);
+        user.setDateRecrutement(dateRecrutement);
+        user.setSalaire(salaire);
+        user.setContrat(contrat);
+        user.setEmail(email);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setRole(role);
 
         if (departement == null) {
             return MessageResponse.builder().message("Departement Not Found").build();
         }
-        user.setDepartement(departement);
+        user.setDepartement(departement1);
         repository.save(user);
         return MessageResponse.builder().message("User Was Modified").build();
     }
@@ -124,6 +133,6 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
     public List<User> findByDepartement(String NomDepartement) throws Exception {
         Departement departement = departementRepository.findByNom(NomDepartement);
         Role role = Role.EMPLOYE;
-        return repository.findByDepartementAndRole(departement,role);
+        return repository.findByDepartementAndRole(departement, role);
     }
 }
