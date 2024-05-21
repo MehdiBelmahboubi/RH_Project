@@ -48,7 +48,7 @@ export class CandidatureComponent {
 
   submitcandidat() {
     const formData = new FormData();
-    formData.set('nom',this.formcandidature.value.nom)
+    formData.set('nom', this.formcandidature.value.nom)
     formData.set('prenom', this.formcandidature.value.prenom);
     formData.set('email', this.formcandidature.value.email);
     formData.set('departement', this.formcandidature.value.departement);
@@ -58,9 +58,11 @@ export class CandidatureComponent {
     this.cadidatureservice.createcandidature(formData).subscribe({
       next: (response: CandidateResponse) => {
         this.validation = response.message;
+        alert(this.validation);
       },
       error: () => {
         this.errorMessage = "Retry Again";
+        alert(this.errorMessage);
       }
     })
   }

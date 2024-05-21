@@ -1,8 +1,10 @@
 package com.mehdi.rh_project.Controller;
 
 import com.mehdi.rh_project.Repository.CandidatRepository;
+import com.mehdi.rh_project.Repository.DepartementRepository;
 import com.mehdi.rh_project.Service.CandidatService;
 import com.mehdi.rh_project.dao.Candidat;
+import com.mehdi.rh_project.dao.Departement;
 import com.mehdi.rh_project.response.MessageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -21,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CandidatController {
     private final CandidatRepository repository;
+    private final DepartementRepository departementRepository;
     private final CandidatService CandidateService;
 
     @PostMapping(value = "/create",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -35,6 +38,13 @@ public class CandidatController {
         return ResponseEntity.ok(CandidateService.createCandidat(cv,lettreMotivation,nom,prenom,email,departement));
     }
 
+    @PutMapping("/accepte/{id}")
+    public ResponseEntity<MessageResponse> accepte(
+            @PathVariable Long id
+    ) throws Exception {
+        return ResponseEntity.ok(CandidateService.acceptCandidat(id));
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<MessageResponse>  delete(
             @PathVariable Long id
@@ -47,21 +57,13 @@ public class CandidatController {
         return ResponseEntity.ok(CandidateService.findAll());
     }
 
-    @GetMapping("/get/{id}/departement")
+    @GetMapping("/get/{nom}/departement")
     public ResponseEntity<List<Candidat>>  finByDepartement(
-            @PathVariable Long id
+            @PathVariable String nom
     ) throws Exception {
+        Departement departement = departementRepository.findByNom(nom);
+        Long id = departement.getId();
         return ResponseEntity.ok(CandidateService.findByDepartement(id));
-    }
-
-    @GetMapping(value = "/cv/{id}/candidature",produces = MediaType.APPLICATION_PDF_VALUE)
-    public byte[] getcvFile(@PathVariable long id) throws Exception {
-        return CandidateService.getcvFile(id);
-    }
-
-    @GetMapping(value = "/lettre/{id}/candidature",produces = MediaType.APPLICATION_PDF_VALUE)
-    public byte[] getlettreFile(@PathVariable long id) throws Exception {
-        return CandidateService.getlettreFile(id);
     }
 
 }

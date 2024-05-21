@@ -10,8 +10,7 @@ import java.util.List;
 public interface CandidatService {
     public MessageResponse createCandidat( MultipartFile cv,MultipartFile lettreMotivation,String nom,String prenom,String email,String departement) throws Exception;
     public MessageResponse deleteCandidat(Long id) throws Exception;
+    public MessageResponse acceptCandidat(Long id) throws Exception;
     public List<Candidat> findAll() throws Exception;
     public List<Candidat> findByDepartement(Long idDep) throws Exception;
-    public byte[] getcvFile(long idCandidat) throws  Exception;
-    public byte[] getlettreFile(long idCandidat) throws  Exception;
 }

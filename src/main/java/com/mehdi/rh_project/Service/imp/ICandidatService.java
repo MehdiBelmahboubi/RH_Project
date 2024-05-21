@@ -5,6 +5,7 @@ import com.mehdi.rh_project.Repository.DepartementRepository;
 import com.mehdi.rh_project.Service.CandidatService;
 import com.mehdi.rh_project.dao.Candidat;
 import com.mehdi.rh_project.dao.Departement;
+import com.mehdi.rh_project.enums.Etat_Candidature;
 import com.mehdi.rh_project.response.MessageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,25 +36,14 @@ public class ICandidatService implements CandidatService {
         if (candidat != null) {
             return MessageResponse.builder().message("Already have a Submiting").build();
         }
-        Path path = Paths.get(System.getProperty("user.home"),"cadidates-app-files","candidatures");
-        if(!Files.exists(path))
-        {
-            Files.createDirectories(path);
-        }
-        String cvId = UUID.randomUUID().toString();
-        Path filePath1 = Paths.get(System.getProperty("user.home"),"cadidates-app-files","candidatures",cvId+".pdf");
-        Files.copy(cv.getInputStream(),filePath1);
-        String lettreId = UUID.randomUUID().toString();
-        Path filePath2 = Paths.get(System.getProperty("user.home"),"cadidates-app-files","candidatures",lettreId+".pdf");
-        Files.copy(lettreMotivation.getInputStream(),filePath2);
-
 
         var candidatcreate = Candidat.builder()
                 .nom(nom)
                 .prenom(prenom)
                 .email(email)
-                .cv(filePath1.toUri().toString())
-                .lettreMotivation(filePath2.toUri().toString())
+                .etat(Etat_Candidature.EnCours)
+                .cv(cv.getBytes())
+                .lettreMotivation(lettreMotivation.getBytes())
                 .departement(defartementfind)
                 .build();
         repository.save(candidatcreate);
@@ -76,6 +66,21 @@ public class ICandidatService implements CandidatService {
     }
 
     @Override
+    public MessageResponse acceptCandidat(Long id) throws Exception {
+        Candidat candidat = null;
+        Optional<Candidat> Ocandidat = repository.findById(id);
+        if(Ocandidat == null)
+        {
+            return MessageResponse.builder().message("Candidature Not Found").build();
+        } else if (Ocandidat.isPresent()) {
+            candidat=Ocandidat.get();
+        }
+        candidat.setEtat(Etat_Candidature.Accepter);
+        repository.save(candidat);
+        return MessageResponse.builder().message("Candidat Accepted").build();
+    }
+
+    @Override
     public List<Candidat> findAll() {
         return repository.findAll();
     }
@@ -91,17 +96,4 @@ public class ICandidatService implements CandidatService {
         return repository.findByDepartement(departement);
     }
 
-    @Override
-    public byte[] getcvFile(long idCandidat) throws Exception {
-        Candidat candidat = repository.findById(idCandidat).get();
-        String filePath = candidat.getCv();
-        return Files.readAllBytes(Path.of(URI.create(filePath)));
-    }
-
-    @Override
-    public byte[] getlettreFile(long idCandidat) throws Exception {
-        Candidat candidat = repository.findById(idCandidat).get();
-        String filePath = candidat.getLettreMotivation();
-        return Files.readAllBytes(Path.of(URI.create(filePath)));
-    }
 }

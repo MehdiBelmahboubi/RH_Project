@@ -1,6 +1,6 @@
 package com.mehdi.rh_project.dao;
 
-import com.mehdi.rh_project.dao.Departement;
+import com.mehdi.rh_project.enums.Etat_Candidature;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,11 +18,17 @@ public class Candidat {
     @Column(nullable = false)
     private String email;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String cv;
+    private Etat_Candidature etat;
 
-    @Column(nullable = false)
-    private String lettreMotivation;
+    @Lob
+    @Column(name = "cv",columnDefinition="LONGBLOB")
+    private byte[] cv;
+
+    @Lob
+    @Column(name = "lettreMotivation",columnDefinition="LONGBLOB")
+    private byte[] lettreMotivation;
 
     @ManyToOne
     @JoinColumn(name = "departement_id")

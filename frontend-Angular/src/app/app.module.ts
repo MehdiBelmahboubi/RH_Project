@@ -65,6 +65,8 @@ import { VacationsEmplComponent } from './Employes-Interface/vacations-empl/vaca
 import {ProfileEmplComponent} from "./Employes-Interface/profile-empl/profile-empl.component";
 import { UserDetailsComponent } from './Rh-Interface/employes-rh/user-details/user-details.component';
 import { DemandeCongesComponent } from './Rh-Interface/vacations-rh/demande-conges/demande-conges.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfViewerComponent } from './Rh-Interface/recrutements-rh/pdf-viewer/pdf-viewer.component';
 
 
 @NgModule({
@@ -99,6 +101,7 @@ import { DemandeCongesComponent } from './Rh-Interface/vacations-rh/demande-cong
     ProfileEmplComponent,
     UserDetailsComponent,
     DemandeCongesComponent,
+    PdfViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -142,6 +145,7 @@ import { DemandeCongesComponent } from './Rh-Interface/vacations-rh/demande-cong
     MatDatepickerModule,
     MatDatepicker,
     MatOptionModule,
+    PdfViewerModule,
     MatSelectModule,
     MatPrefix,
     MatIconButton
