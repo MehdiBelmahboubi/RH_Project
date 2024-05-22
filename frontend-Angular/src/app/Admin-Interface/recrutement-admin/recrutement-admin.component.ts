@@ -4,11 +4,12 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrl: './sidenav.component.css'
+  selector: 'app-recrutement-admin',
+  templateUrl: './recrutement-admin.component.html',
+  styleUrl: './recrutement-admin.component.css'
 })
-export class SidenavComponent {
+export class RecrutementAdminComponent {
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   nom: string | null = null;
@@ -33,6 +34,7 @@ export class SidenavComponent {
         }
       });
   }
+
 
 
 }

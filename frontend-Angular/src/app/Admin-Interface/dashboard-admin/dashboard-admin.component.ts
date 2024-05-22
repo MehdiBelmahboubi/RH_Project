@@ -4,11 +4,11 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrl: './sidenav.component.css'
+  selector: 'app-dashboard-admin',
+  templateUrl: './dashboard-admin.component.html',
+  styleUrl: './dashboard-admin.component.css'
 })
-export class SidenavComponent {
+export class DashboardAdminComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   nom: string | null = null;
