@@ -68,6 +68,8 @@ import { DashboardAdminComponent } from './Admin-Interface/dashboard-admin/dashb
 import { RhAdminComponent } from './Admin-Interface/rh-admin/rh-admin.component';
 import { RecrutementAdminComponent } from './Admin-Interface/recrutement-admin/recrutement-admin.component';
 import { ProfilAdminComponent } from './Admin-Interface/profil-admin/profil-admin.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { AddHoraireDialogComponentComponent } from './Rh-Interface/horaire-rh/add-horaire-dialog-component/add-horaire-dialog-component.component';
 
 
 @NgModule({
@@ -102,6 +104,7 @@ import { ProfilAdminComponent } from './Admin-Interface/profil-admin/profil-admi
     RhAdminComponent,
     RecrutementAdminComponent,
     ProfilAdminComponent,
+    AddHoraireDialogComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -148,7 +151,8 @@ import { ProfilAdminComponent } from './Admin-Interface/profil-admin/profil-admi
     PdfViewerModule,
     MatSelectModule,
     MatPrefix,
-    MatIconButton
+    MatIconButton,
+    FullCalendarModule
   ],
   providers: [
     provideAnimationsAsync(),AuthGuard,AuthorizationGuard,

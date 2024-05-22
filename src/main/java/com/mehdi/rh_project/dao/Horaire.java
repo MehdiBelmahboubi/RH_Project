@@ -10,8 +10,9 @@ public class Horaire {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+
     @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Column(unique = true,nullable = false)
     private String jour;
 
     @Column(nullable = false)

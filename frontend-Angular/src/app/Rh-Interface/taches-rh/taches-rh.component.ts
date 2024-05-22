@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Taches } from '../../models/taches';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -11,7 +11,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './taches-rh.component.html',
   styleUrl: './taches-rh.component.css'
 })
-export class TachesRhComponent {
+export class TachesRhComponent implements OnInit {
   errorMessage: string | null = null;
   validation: string | null = null;
   cin: string | null = null;
@@ -21,8 +21,22 @@ export class TachesRhComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private tachesService: TachesService,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(private tachesService: TachesService) { }
 
-    
+  ngOnInit(): void {
+    this.cin = localStorage.getItem('cin');
+    if (this.cin) {
+      this.tachesService.getTachesByEmployes(this.cin).subscribe({
+        next: value => {
+          this.taches = value;
+          this.tachesDataSource = new MatTableDataSource<Taches>(this.taches);
+          this.tachesDataSource.paginator = this.paginator;
+          this.tachesDataSource.sort = this.sort;
+        },
+        error: (err) => {
+          console.error('Error fetching Taches:', err);
+        }
+      });
+    }
+  }
 }

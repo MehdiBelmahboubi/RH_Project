@@ -10,6 +10,8 @@ import com.mehdi.rh_project.response.MessageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -27,8 +29,16 @@ public class IHoraireService implements HoraireService {
         }else {
             return MessageResponse.builder().message("Employee Not Found").build();
         }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = LocalDate.now().format(formatter);
+
+        Optional<Horaire> existingHoraire = horaireRepostory.findByJourAndEmployes(formattedDate, employes);
+        if (existingHoraire.isPresent()) {
+            return MessageResponse.builder().message("Horaire already exists for this date").build();
+        }
+
         var horaire = Horaire.builder()
-                .jour(request.getJour())
+                .jour(formattedDate)
                 .heureTravaille(request.getHeureTravaille())
                 .employes(employes)
                 .build();

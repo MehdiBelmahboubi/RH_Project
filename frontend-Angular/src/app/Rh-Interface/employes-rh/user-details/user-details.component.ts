@@ -31,8 +31,12 @@ export class UserDetailsComponent implements OnInit {
   displayedtachesColumns: string[] = ['dateDebut', 'dateFin', 'description', 'etat'];
   displayedcongesColumns: string[] = ['dateDemande', 'dateDebut', 'dateFin', 'periode', 'type', 'etat', 'accepter', 'refuser'];
   displayedhoraireColumns: string[] = ['heureTravaille', 'jour'];
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('paginator1') paginator1!: MatPaginator;
+  @ViewChild('paginator2') paginator2!: MatPaginator;
+  @ViewChild('paginator3') paginator3!: MatPaginator;
+  @ViewChild('sort1') sort1!: MatSort;
+  @ViewChild('sort2') sort2!: MatSort;
+  @ViewChild('sort3') sort3!: MatSort;
 
   constructor(private tachesService: TachesService,
     private congesService: CongesService,
@@ -47,8 +51,8 @@ export class UserDetailsComponent implements OnInit {
         next: value => {
           this.taches = value;
           this.tachesDataSource = new MatTableDataSource<Taches>(this.taches);
-          this.tachesDataSource.paginator = this.paginator;
-          this.tachesDataSource.sort = this.sort;
+          this.tachesDataSource.paginator = this.paginator1;
+          this.tachesDataSource.sort = this.sort1;
         },
         error: (err) => {
           console.error('Error fetching Taches:', err);
@@ -59,8 +63,8 @@ export class UserDetailsComponent implements OnInit {
         next: value => {
           this.conges = value;
           this.congesDataSource = new MatTableDataSource<Conges>(this.conges);
-          this.congesDataSource.paginator = this.paginator;
-          this.congesDataSource.sort = this.sort;
+          this.congesDataSource.paginator = this.paginator2;
+          this.congesDataSource.sort = this.sort2;
         },
         error: (err) => {
           console.error('Error fetching Conges:', err);
@@ -71,8 +75,8 @@ export class UserDetailsComponent implements OnInit {
         next: value => {
           this.horaire = value;
           this.horaireDataSource = new MatTableDataSource<Horaire>(this.horaire);
-          this.horaireDataSource.paginator = this.paginator;
-          this.horaireDataSource.sort = this.sort;
+          this.horaireDataSource.paginator = this.paginator3;
+          this.horaireDataSource.sort = this.sort3;
         },
         error: (err) => {
           console.error('Error fetching Horaires:', err);

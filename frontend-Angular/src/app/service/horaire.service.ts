@@ -11,7 +11,11 @@ export class HoraireService {
 
   constructor(private http: HttpClient) { }
 
-  public getHoraireByEmployes(cin: string): Observable<Array<Horaire>> {
+  public getHoraireByEmployes(cin: string|null): Observable<Array<Horaire>> {
     return this.http.get<Array<Horaire>>(`${environment.backendHost}/horaire/get/${cin}/employee`);
+  }
+
+  public addHoraire(horaire: Horaire): Observable<void> {
+    return this.http.post<void>(`${environment.backendHost}/horaire/create`,horaire);
   }
 }
