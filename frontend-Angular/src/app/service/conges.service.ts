@@ -19,4 +19,12 @@ export class CongesService {
   public createConge(congeRequest: CongeRequest): Observable<any> {
     return this.http.post<any>(`${environment.backendHost}/conge/create`,congeRequest);
   }
+
+  public accepterConges(id: number): Observable<any> {
+    return this.http.put<Array<Conges>>(`${environment.backendHost}/conge/accepte/${id}`,id);
+  }
+
+  public refuserConges(id: number): Observable<any> {
+    return this.http.put<any>(`${environment.backendHost}/conge/decline/${id}`,id);
+  }
 }

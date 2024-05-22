@@ -8,19 +8,22 @@ import { Base64DecodeService } from '../../../service/base64-decode.service';
   templateUrl: './pdf-viewer.component.html',
   styleUrl: './pdf-viewer.component.css'
 })
-export class PdfViewerComponent implements OnInit{
-  fileUrl!:SafeResourceUrl;
+export class PdfViewerComponent implements OnInit {
+  fileUrl!: SafeResourceUrl;
   decodedCV: string = '';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private sanitizer: DomSanitizer,private base64DecodeService: Base64DecodeService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private sanitizer: DomSanitizer, private base64DecodeService: Base64DecodeService) { }
 
   afterLoadComplete(event: any) {
     console.log(event);
   }
 
   ngOnInit(): void {
-    const byteArray = new Uint8Array(atob(this.data).split('').map((char)=>char.charCodeAt(0)));
-    const file = new Blob([byteArray],{type:'application/pdf'});
+    const byteArray = new Uint8Array(atob(this.data)
+      .split('')
+      .map((char) => char
+        .charCodeAt(0)));
+    const file = new Blob([byteArray], { type: 'application/pdf' });
     this.fileUrl = window.URL.createObjectURL(file);
   }
 

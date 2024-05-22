@@ -11,6 +11,9 @@ import com.mehdi.rh_project.response.MessageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,7 +94,23 @@ public class ITachesService implements TachesService {
         if(Ouser.isPresent()){
             user=Ouser.get();
         }
+        List<Taches> allTaches = tachesRepostory.findByEmployes(user);
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        for (Taches tache : allTaches) {
+            try {
+                LocalDate dateFin = LocalDate.parse(tache.getDateFin(), formatter);
+                if (dateFin.isBefore(today) && tache.getEtat() == Taches_Etat.Encours) {
+                    tache.setEtat(Taches_Etat.EnRetard);
+                    tachesRepostory.save(tache);
+                }
+            } catch (DateTimeParseException e) {
+                System.err.println("Invalid date format for task ID " + tache.getId() + ": " + tache.getDateFin());
+            }
+        }
         return tachesRepostory.findByEmployes(user);
     }
+
 
 }

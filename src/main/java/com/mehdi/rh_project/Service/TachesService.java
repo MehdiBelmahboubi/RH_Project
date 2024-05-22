@@ -3,6 +3,7 @@ package com.mehdi.rh_project.Service;
 import com.mehdi.rh_project.dao.Taches;
 import com.mehdi.rh_project.request.TachesRequest;
 import com.mehdi.rh_project.response.MessageResponse;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
 

@@ -11,6 +11,7 @@ import { Conges } from '../../../models/conges';
 import { Horaire } from '../../../models/horaire';
 import { CongesService } from '../../../service/conges.service';
 import { HoraireService } from '../../../service/horaire.service';
+import { MessageResponse } from '../../../models/message-response';
 
 @Component({
   selector: 'app-user-details',
@@ -27,15 +28,15 @@ export class UserDetailsComponent implements OnInit {
   tachesDataSource!: MatTableDataSource<Taches>;
   congesDataSource!: MatTableDataSource<Conges>;
   horaireDataSource!: MatTableDataSource<Horaire>;
-  displayedtachesColumns: string[] = ['dateDebut', 'dateFin', 'description', 'etat', 'modifier', 'supprimer'];
-  displayedcongesColumns: string[] = ['dateDemande', 'dateDebut', 'dateFin', 'periode', 'type', 'etat', 'modifier', 'supprimer'];
-  displayedhoraireColumns: string[] = ['heureTravaille', 'jour', 'modifier', 'supprimer'];
+  displayedtachesColumns: string[] = ['dateDebut', 'dateFin', 'description', 'etat'];
+  displayedcongesColumns: string[] = ['dateDemande', 'dateDebut', 'dateFin', 'periode', 'type', 'etat', 'accepter', 'refuser'];
+  displayedhoraireColumns: string[] = ['heureTravaille', 'jour'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private tachesService: TachesService,
     private congesService: CongesService,
-    private horaireService :HoraireService,
+    private horaireService: HoraireService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
@@ -77,8 +78,37 @@ export class UserDetailsComponent implements OnInit {
           console.error('Error fetching Horaires:', err);
         }
       });
-     } else {
+    } else {
       console.error('No Employee Was Found');
     }
+  }
+
+  refuserConge(conges: Conges) {
+    this.congesService.refuserConges(conges.id).subscribe({
+      next: (response: MessageResponse) => {
+        this.validation = response.message;
+        alert(this.validation);
+        window.location.reload();
+      },
+      error: () => {
+        this.errorMessage = "Error Declining";
+        alert(this.errorMessage);
+      }
+    });
+  }
+
+
+  accepteConge(conges: Conges) {
+    this.congesService.accepterConges(conges.id).subscribe({
+      next: (response: MessageResponse) => {
+        this.validation = response.message;
+        alert(this.validation);
+        window.location.reload();
+      },
+      error: () => {
+        this.errorMessage = "Error Accepting";
+        alert(this.errorMessage);
+      }
+    });
   }
 }
