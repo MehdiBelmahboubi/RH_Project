@@ -1,0 +1,21 @@
+<div mat-dialog-title class="header">
+    <h1>Add Horaire</h1>
+    <mat-icon mat-dialog-close #close_button class="close-button">clear</mat-icon>
+</div>
+<div mat-dialog-content>
+            <form [formGroup]="horaireFormGroup" class="step-form">
+                <div class="formGroup">
+                    <div class="form-row">
+                        <mat-form-field class="form-field">
+                            <mat-label>Horaire</mat-label>
+                            <input matInput placeholder="horaire" formControlName="horaire" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="header">
+                        <button mat-mini-fab color="primary" (click)="onSubmit()" class="right-button">
+                            <mat-icon>check</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </form>
+</div>

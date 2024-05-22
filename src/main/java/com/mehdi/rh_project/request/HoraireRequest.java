@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HoraireRequest {
-    private Long id;
-    private String jour;
     private Long heureTravaille;
     private String employes;
 }

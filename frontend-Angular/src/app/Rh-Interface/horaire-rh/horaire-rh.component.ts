@@ -43,8 +43,10 @@ export class HoraireRhComponent {
       }
   }
 
-  handleDateClick(arg: DateClickArg) {
-    alert('date click! ' + arg.dateStr);
+  handleDateClick(data: any) {
+    this.dialog.open(AddHoraireDialogComponentComponent,{
+      data,
+      width: '1000px'});
   }
 
   private formatDate(dateStr: string): string {

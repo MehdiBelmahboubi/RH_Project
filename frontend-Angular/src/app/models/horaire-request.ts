@@ -1,8 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface HoraireRequest {
-  employes?: string;
+  employes: string | null;
   heureTravaille?: number;
-  id?: number;
-  jour?: string;
 }
