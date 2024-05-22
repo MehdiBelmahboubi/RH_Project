@@ -17,6 +17,10 @@ export class EmployesService {
     return this.http.get<Array<User>>(`${environment.backendHost}/user/get/{nom}/departement?nom=${nom}`);
   }
 
+  public getallRH():Observable<Array<User>>
+  {
+    return this.http.get<Array<User>>(`${environment.backendHost}/user/get/all/rh`);
+  }
   public deleteUser(cin:string){
     return this.http.delete<any>(`${environment.backendHost}/user/delete/${cin}`)
   }

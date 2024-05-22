@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CandidatureService {
-  
+
 
   constructor(private http:HttpClient) { }
 
@@ -20,7 +20,12 @@ export class CandidatureService {
   public getCandidat(departement:string)
   {
     return this.http.get<any>(`${environment.backendHost}/candidate/get/${departement}/departement`)
-  } 
+  }
+
+  public getAllCandidat()
+  {
+    return this.http.get<any>(`${environment.backendHost}/candidate/get/all`)
+  }
 
   public accepteCandidat(id:number)
   {
@@ -31,5 +36,5 @@ export class CandidatureService {
     return this.http.delete<any>(`${environment.backendHost}/candidate/delete/${id}`)
   }
 
-  
+
 }

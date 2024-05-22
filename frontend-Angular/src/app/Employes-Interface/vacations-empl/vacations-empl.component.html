@@ -1,1 +1,48 @@
-<p>vacations-empl works!</p>
+<mat-card>
+  <mat-card-header class="header">
+    <mat-card-title>
+      Conges
+    </mat-card-title>
+    <button mat-mini-fab color="primary" class="add-button" (click)="openDemandeConges()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <table matSort mat-table [dataSource]="congesDataSource">
+      <ng-container matColumnDef="dateDemande">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Demande</th>
+        <td mat-cell *matCellDef="let conges"> {{conges.dateDemande}} </td>
+      </ng-container>
+      <ng-container matColumnDef="dateDebut">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Debut</th>
+        <td mat-cell *matCellDef="let conges"> {{conges.dateDebut}} </td>
+      </ng-container>
+      <ng-container matColumnDef="dateFin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Fin</th>
+        <td mat-cell *matCellDef="let conges"> {{conges.dateFin}} </td>
+      </ng-container>
+      <ng-container matColumnDef="periode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Periode</th>
+        <td mat-cell *matCellDef="let conges"> {{conges.periode}} </td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+        <td mat-cell *matCellDef="let conges"> {{conges.type}} </td>
+      </ng-container>
+      <ng-container matColumnDef="etat">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Etat</th>
+        <td mat-cell *matCellDef="let conges"> {{conges.etat}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let conges"> {{conges.description}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedcongesColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedcongesColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[4, 8, 16]" showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

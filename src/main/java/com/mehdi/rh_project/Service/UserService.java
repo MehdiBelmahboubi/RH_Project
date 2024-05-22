@@ -22,5 +22,7 @@ public interface UserService {
                                       String nom, String password, String prenom,
                                       float salaire, String telephone, Role role) throws Exception;
     public List<User> findAllUser() throws Exception;
+
+    public List<User> findAllRh() throws Exception;
     public List<User> findByDepartement(String NomDepartement) throws Exception;
 }

@@ -130,6 +130,12 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
     }
 
     @Override
+    public List<User> findAllRh() throws Exception {
+        Role role = Role.RH;
+        return repository.findByRole(role);
+    }
+
+    @Override
     public List<User> findByDepartement(String NomDepartement) throws Exception {
         Departement departement = departementRepository.findByNom(NomDepartement);
         Role role = Role.EMPLOYE;
