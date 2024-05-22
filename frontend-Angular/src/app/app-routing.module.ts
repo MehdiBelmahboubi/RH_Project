@@ -3,9 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeTemplateComponent} from "./User-Interface/home/home-template.component";
 import {LoginComponent} from "./User-Interface/login/login.component";
 import {CandidatureComponent} from "./User-Interface/candidature/candidature.component";
-import {DepartementComponent} from "./Admin-Interface/departement/departement.component";
-import {EmployesComponent} from "./Admin-Interface/employes/employes.component";
-import {RhComponent} from "./Admin-Interface/rh/rh.component";
 import { SidenavComponent } from './Admin-Interface/sidenav/sidenav.component';
 import { SidenavRhComponent } from './Rh-Interface/sidenav-rh/sidenav-rh.component';
 import { EmployesRhComponent } from './Rh-Interface/employes-rh/employes-rh.component';
@@ -23,18 +20,25 @@ import { TachesEmplComponent } from './Employes-Interface/taches-empl/taches-emp
 import { HoraireEmplComponent } from './Employes-Interface/horaire-empl/horaire-empl.component';
 import { VacationsEmplComponent } from './Employes-Interface/vacations-empl/vacations-empl.component';
 import { ProfileEmplComponent } from './Employes-Interface/profile-empl/profile-empl.component';
+import { DashboardAdminComponent } from './Admin-Interface/dashboard-admin/dashboard-admin.component';
+import { RhAdminComponent } from './Admin-Interface/rh-admin/rh-admin.component';
+import { RecrutementAdminComponent } from './Admin-Interface/recrutement-admin/recrutement-admin.component';
+import {ProfilAdminComponent } from './Admin-Interface/profil-admin/profil-admin.component';
 const routes: Routes = [
   {path:"",component:HomeTemplateComponent},
   {path:"home",component:HomeTemplateComponent},
   {path:"login",component:LoginComponent},
   {path:"candidature",component:CandidatureComponent},
+
   {path:"GsAdmin",component:SidenavComponent,
   canActivate:[AuthGuard,AuthorizationGuard],data : {role : "ADMIN"},
   children:[
-    {path:"departement",component:DepartementComponent},
-    {path:"employes",component:EmployesComponent},
-    {path:"rh",component:RhComponent},
+    { path: "dashboard", component: DashboardAdminComponent },
+    { path: "rh", component: RhAdminComponent },
+    { path: "recrutement", component: RecrutementAdminComponent },
+    { path: "profil", component: ProfilAdminComponent },
   ]},
+
   {path:"GsRh",component:SidenavRhComponent,
   canActivate:[AuthGuard,AuthorizationGuard],data : {role : "RH"},
   children:[

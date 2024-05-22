@@ -10,10 +10,6 @@ import { HomeTemplateComponent } from './User-Interface/home/home-template.compo
 import { LoginComponent } from './User-Interface/login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { CandidatureComponent } from './User-Interface/candidature/candidature.component';
-import { EmployesComponent } from './Admin-Interface/employes/employes.component';
-import { RhComponent } from './Admin-Interface/rh/rh.component';
-import { DepartementComponent } from './Admin-Interface/departement/departement.component';
-import { SettingComponent } from './Admin-Interface/setting/setting.component';
 import {MatDrawer, MatDrawerContainer, MatDrawerContent, MatSidenav, MatSidenavContainer, MatSidenavContent, MatSidenavModule} from "@angular/material/sidenav";
 import {MatList, MatListItem, MatListModule} from "@angular/material/list";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
@@ -36,6 +32,7 @@ import { HoraireRhComponent } from './Rh-Interface/horaire-rh/horaire-rh.compone
 import { ProfileRhComponent } from './Rh-Interface/profile-rh/profile-rh.component';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 
+
 import {
   MatCell,
   MatColumnDef,
@@ -54,7 +51,7 @@ import { SidenavEmplComponent } from './Employes-Interface/sidenav-empl/sidenav-
 import { AddEditEmployesComponent } from './Rh-Interface/employes-rh/add-edit-employes/add-edit-employes.component';
 import { MatDialog, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
 import { MatStepperModule }
-    from '@angular/material/stepper'
+  from '@angular/material/stepper'
 import { MatFormFieldModule, MatPrefix } from '@angular/material/form-field';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatOptionModule, provideNativeDateAdapter } from '@angular/material/core';
@@ -67,6 +64,10 @@ import { UserDetailsComponent } from './Rh-Interface/employes-rh/user-details/us
 import { DemandeCongesComponent } from './Rh-Interface/vacations-rh/demande-conges/demande-conges.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PdfViewerComponent } from './Rh-Interface/recrutements-rh/pdf-viewer/pdf-viewer.component';
+import { DashboardAdminComponent } from './Admin-Interface/dashboard-admin/dashboard-admin.component';
+import { RhAdminComponent } from './Admin-Interface/rh-admin/rh-admin.component';
+import { RecrutementAdminComponent } from './Admin-Interface/recrutement-admin/recrutement-admin.component';
+import { ProfilAdminComponent } from './Admin-Interface/profil-admin/profil-admin.component';
 
 
 @NgModule({
@@ -76,10 +77,6 @@ import { PdfViewerComponent } from './Rh-Interface/recrutements-rh/pdf-viewer/pd
     LoginComponent,
     CandidatureComponent,
     HeaderComponent,
-    EmployesComponent,
-    RhComponent,
-    DepartementComponent,
-    SettingComponent,
     SidenavComponent,
     SidenavRhComponent,
     EmployesRhComponent,
@@ -94,7 +91,6 @@ import { PdfViewerComponent } from './Rh-Interface/recrutements-rh/pdf-viewer/pd
     AddEditEmployesComponent,
     DashboardEmplComponent,
     SidenavEmplComponent,
-    EmployesComponent,
     TachesEmplComponent,
     HoraireEmplComponent,
     VacationsEmplComponent,
@@ -102,6 +98,10 @@ import { PdfViewerComponent } from './Rh-Interface/recrutements-rh/pdf-viewer/pd
     UserDetailsComponent,
     DemandeCongesComponent,
     PdfViewerComponent,
+    DashboardAdminComponent,
+    RhAdminComponent,
+    RecrutementAdminComponent,
+    ProfilAdminComponent,
   ],
   imports: [
     BrowserModule,

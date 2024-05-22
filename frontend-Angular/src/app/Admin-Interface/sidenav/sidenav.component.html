@@ -1,30 +1,38 @@
-<mat-drawer-container >
-    <mat-drawer style="background-color: rgb(229,240,241)" opened="true" mode="side" position="start">
-      <mat-list>
-        <mat-list-item>
-          <button mat-button routerLink="/GsAdmin/departement">
-            <mat-icon>home</mat-icon>
-            Departement
-          </button>
-        </mat-list-item>
-        <mat-list-item>
-          <button mat-button routerLink="/GsAdmin/rh">
-            <mat-icon>personne</mat-icon>
-            RH
-          </button>
-        </mat-list-item>
-        <mat-list-item>
-          <button mat-button routerLink="/GsAdmin/employes">
-            <mat-icon>personne</mat-icon>
-            Employes
-          </button>
-        </mat-list-item>
-      </mat-list>
-    </mat-drawer>
-   <mat-drawer-content>
-      <div style="min-height: 600px">
-        <router-outlet></router-outlet>
-      </div>
-    </mat-drawer-content>
-  </mat-drawer-container>
-  
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      class="avatar mat-elevation-z8"
+    />
+    <h4 class="name">{{ nom + " " +prenom }}</h4>
+    <p class="designation">{{fonction}}</p>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/GsAdmin/dashboard">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/GsAdmin/rh">
+      <mat-icon>personne</mat-icon>
+      <span>RH</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/GsAdmin/recrutement">
+      <mat-icon>work</mat-icon>
+      <span>Recrutement</span>
+    </button>
+
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/GsAdmin/profil">
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
