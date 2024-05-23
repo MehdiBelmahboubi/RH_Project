@@ -1,0 +1,105 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+.avatar {
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-left: 175px;
+  margin-block-start: -6px ;
+}
+
+.employee-info {
+  margin-block-start: 20px
+}
+
+
+.profile-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.profile-left, .profile-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 45%;
+
+}
+
+.edit-section {
+  margin-top: 40px;
+  margin-right: -3px;
+  background-color: #5c999b;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.profile-picture {
+  text-align: center;
+}
+
+.profile-picture img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.profile-picture input {
+  display: block;
+  margin: 10px auto;
+}
+
+.password-change,
+.email-change {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.password-change label,
+.email-change label {
+  text-align: left;
+}
+
+.employee-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.employee-info li {
+  margin: 5px 0;
+}
+
+.input-field {
+  height: 45px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  color: #fff;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.submit {
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  height: 45px;
+  outline: none;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: .3s;
+}
+
+.submit:hover {
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
