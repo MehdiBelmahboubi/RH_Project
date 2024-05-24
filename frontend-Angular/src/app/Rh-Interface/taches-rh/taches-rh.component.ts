@@ -17,7 +17,7 @@ export class TachesRhComponent implements OnInit {
   cin: string | null = null;
   taches!: Array<Taches>;
   tachesDataSource!: MatTableDataSource<Taches>;
-  displayedtachesColumns: string[] = ['dateDebut', 'dateFin', 'description', 'etat'];
+  displayedtachesColumns: string[] = ['dateDebut', 'dateFin', 'description', 'etat' , 'fin'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -38,5 +38,9 @@ export class TachesRhComponent implements OnInit {
         }
       });
     }
+  }
+
+  finTaches(taches:Taches) {
+
   }
 }
