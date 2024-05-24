@@ -1,1 +1,35 @@
-<p>profil-admin works!</p>
+<div class="profile-container">
+  <div class="profile-left">
+    <div class="edit-section">
+      <h2>Profile</h2>
+      <img
+        class="avatar mat-elevation-z8"
+      />
+
+      <div class="employee-info">
+        <ul>
+          <li><strong>Nom:</strong> {{ admin.nom }}</li>
+          <li><strong>Prénom:</strong> {{ admin.prenom }}</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-right">
+    <div class="edit-section">
+      <h2>Modifier mail et Mot de passe </h2>
+      <div class="email-change">
+        <label>Nouveau mail</label>
+        <input type="email" [(ngModel)]="newEmail" class="input-field">
+        <div class="password-change">
+          <label>Nouveau mot de passe</label>
+          <input type="password" [(ngModel)]="newPassword" class="input-field">
+          <button (click)="changePassword()" class="submit">Enregistrer</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

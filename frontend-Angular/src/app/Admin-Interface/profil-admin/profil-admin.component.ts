@@ -10,29 +10,28 @@ import {Router} from "@angular/router";
 })
 export class ProfilAdminComponent {
 
-  @ViewChild(MatSidenav)
-  sidenav!: MatSidenav;
-  nom: string | null = null;
-  prenom: string | null = null;
-  fonction: string | null = null;
+  admin = {
+    nom: 'lola',
+    prenom: 'lme7loula',
 
-  constructor(private observer: BreakpointObserver, private router: Router) {}
+  };
 
-  ngAfterViewInit() {
-    this.nom = localStorage.getItem('nom');
-    this.prenom = localStorage.getItem('prenom');
-    this.fonction = localStorage.getItem('fonction');
-    this.observer
-      .observe(['(max-width: 800px)'])
-      .subscribe((res) => {
-        if (res.matches) {
-          this.sidenav.mode = 'over';
-          this.sidenav.close();
-        } else {
-          this.sidenav.mode = 'side';
-          this.sidenav.open();
-        }
-      });
+
+  newEmail: string = '';
+  oldPassword: string = '';
+  newPassword: string = '';
+
+
+  saveProfile() {
+
   }
 
+
+  changePassword() {
+
+  }
+
+  changeEmail() {
+
+  }
 }

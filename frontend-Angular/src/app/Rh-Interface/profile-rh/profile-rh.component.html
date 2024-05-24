@@ -1,1 +1,43 @@
-<p>profile-rh works!</p>
+<div class="profile-container">
+  <div class="profile-left">
+    <div class="edit-section">
+      <h2>Profile</h2>
+      <img
+        class="avatar mat-elevation-z8"
+      />
+
+      <div class="employee-info">
+        <ul>
+          <li><strong>CIN:</strong> {{ rh.cin }}</li>
+          <li><strong>Nom:</strong> {{ rh.nom }}</li>
+          <li><strong>Prénom:</strong> {{ rh.prenom }}</li>
+          <li><strong>Date de Naissance:</strong> {{ rh.dateNaissance }}</li>
+          <li><strong>Téléphone:</strong> {{ rh.telephone }}</li>
+          <li><strong>Email:</strong> {{ rh.email }}</li>
+          <li><strong>Contrat:</strong> {{ rh.contrat }}</li>
+          <li><strong>Fonction:</strong> {{ rh.fonction }}</li>
+          <li><strong>Salaire:</strong> {{ rh.salaire }}</li>
+          <li><strong>CNSS:</strong> {{ rh.cnss }}</li>
+          <li><strong>Date de Recrutement:</strong> {{ rh.dateRecrutement }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-right">
+    <div class="edit-section">
+      <h2>Modifier mail et Mot de passe </h2>
+      <div class="email-change">
+        <label>Nouveau mail</label>
+        <input type="email" [(ngModel)]="newEmail" class="input-field">
+        <div class="password-change">
+          <label>Nouveau mot de passe</label>
+          <input type="password" [(ngModel)]="newPassword" class="input-field">
+          <button (click)="changePassword()" class="submit">Enregistrer</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
