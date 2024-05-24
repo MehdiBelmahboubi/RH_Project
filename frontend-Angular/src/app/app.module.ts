@@ -72,6 +72,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { AddHoraireDialogComponentComponent } from './Rh-Interface/horaire-rh/add-horaire-dialog-component/add-horaire-dialog-component.component';
 import { RhEmployeesComponent } from './Admin-Interface/rh-admin/rh-employees/rh-employees.component';
 import { AddTachesComponent } from './Rh-Interface/employes-rh/user-details/add-taches/add-taches.component';
+import { PopupComponent } from './popup/popup.component';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import { AddTachesComponent } from './Rh-Interface/employes-rh/user-details/add-
     AddHoraireDialogComponentComponent,
     RhEmployeesComponent,
     AddTachesComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
