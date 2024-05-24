@@ -12,6 +12,7 @@ import { Horaire } from '../../../models/horaire';
 import { CongesService } from '../../../service/conges.service';
 import { HoraireService } from '../../../service/horaire.service';
 import { MessageResponse } from '../../../models/message-response';
+import { AddTachesComponent } from './add-taches/add-taches.component';
 
 @Component({
   selector: 'app-user-details',
@@ -114,5 +115,9 @@ export class UserDetailsComponent implements OnInit {
         alert(this.errorMessage);
       }
     });
+  }
+
+  openAddTaches() {
+    this.dialog.open(AddTachesComponent, {width: '1400px' })
   }
 }

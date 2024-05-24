@@ -12,14 +12,14 @@
                         <mat-form-field class="form-field">
                             <mat-label>{{ data ? 'Cin disabled' : 'Cin' }}</mat-label>
                             <input matInput placeholder="Cin" formControlName="cin" [disabled]="!!data" required>
-                          </mat-form-field>                          
+                          </mat-form-field>
                         <mat-form-field class="form-field">
                             <mat-label>Photo</mat-label>
                             <div class="file-input-container">
                                 <button type="button" mat-icon-button mat-Prefix (click)="f_input.click()">
-                                    <mat-icon>attach_file</mat-icon>
+                                    <mat-icon>photo</mat-icon>
                                 </button>
-                                <input matInput readonly formControlName="photoName">
+                                <input matInput readonly formControlName="photoName" required>
                             </div>
                             <input type="file" hidden #f_input (change)="selectPhoto($event)" accept="image/png">
                         </mat-form-field>
@@ -65,6 +65,14 @@
                         <mat-form-field class="form-field">
                             <mat-label>Salaire</mat-label>
                             <input matInput placeholder="Salaire" formControlName="salaire" required>
+                        </mat-form-field>
+                        <mat-form-field class="form-field" *ngIf="!isRH">
+                            <mat-label>Departements</mat-label>
+                            <mat-select formControlName="departement" required>
+                                @for (departement of departements; track departement) {
+                                <mat-option [value]="departement.value">{{departement.viewValue}}</mat-option>
+                                }
+                            </mat-select>
                         </mat-form-field>
                     </div>
                     <div class="form-row">

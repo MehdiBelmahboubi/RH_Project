@@ -72,7 +72,7 @@ public class User implements UserDetails , Principal {
     private Contrat_Type contrat;
 
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "departement_id")
     private Departement departement;

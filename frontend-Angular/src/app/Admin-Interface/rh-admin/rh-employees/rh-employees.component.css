@@ -12,7 +12,7 @@
   mat-form-field {
     width: 100%;
   }
-  
+
   mat-horizontal-stepper {
     margin-bottom: 24px;
   }
@@ -26,9 +26,3 @@
    .formGroup{
     margin-top: 1cm;
    }
-  
-  .add-button {
-    margin-bottom: 7px;
-    margin-left: auto;
-  }
-  

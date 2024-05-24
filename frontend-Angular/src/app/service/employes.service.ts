@@ -14,7 +14,12 @@ export class EmployesService {
 
   public getEmployesByDepartement(nom:string):Observable<Array<User>>
   {
-    return this.http.get<Array<User>>(`${environment.backendHost}/user/get/{nom}/departement?nom=${nom}`);
+    return this.http.get<Array<User>>(`${environment.backendHost}/user/get/${nom}/departement`);
+  }
+
+  public getEmployesByRh(cin:string):Observable<Array<User>>
+  {
+    return this.http.get<Array<User>>(`${environment.backendHost}/user/get/${cin}/rh`);
   }
 
   public getallRH():Observable<Array<User>>

@@ -85,8 +85,14 @@ public class UserController {
     }
 
     @GetMapping("/get/{nom}/departement")
-    public ResponseEntity<List<User>> getByDepartement(String nom) throws Exception {
+    public ResponseEntity<List<User>> getByDepartement(@PathVariable String nom) throws Exception {
         List<User> user = UserService.findByDepartement(nom);
         return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/get/{cin}/rh")
+    public ResponseEntity<List<User>> getByRh(@PathVariable String cin) throws Exception {
+        List<User> Users = UserService.findByRh(cin);
+        return ResponseEntity.ok(Users);
     }
 }

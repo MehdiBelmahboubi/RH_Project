@@ -25,4 +25,5 @@ public interface UserService {
 
     public List<User> findAllRh() throws Exception;
     public List<User> findByDepartement(String NomDepartement) throws Exception;
+    public List<User> findByRh(String cin) throws Exception;
 }

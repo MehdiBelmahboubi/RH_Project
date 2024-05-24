@@ -11,6 +11,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddEditEmployesComponent} from "../../Rh-Interface/employes-rh/add-edit-employes/add-edit-employes.component";
 import {MessageResponse} from "../../models/message-response";
 import {UserDetailsComponent} from "../../Rh-Interface/employes-rh/user-details/user-details.component";
+import { RhEmployeesComponent } from './rh-employees/rh-employees.component';
 
 @Component({
   selector: 'app-rh-admin',
@@ -23,7 +24,7 @@ export class RhAdminComponent implements OnInit{
   nom: string | null = null;
   users! : Array<User>;
   employesDataSource! : MatTableDataSource<User>;
-  displayedColumns : string[] = ['cin','nom','prenom','dateNsc','telephone','email','contrat','fonction','salaire','cnss','dateRecrutement','modifier','supprimer','details'];
+  displayedColumns : string[] = ['cin','nom','prenom','dateNsc','telephone','email','contrat','fonction','salaire','cnss','dateRecrutement','departement.nom','modifier','supprimer','details','employees'];
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! : MatSort;
   constructor(private employesService : EmployesService,private dialog : MatDialog,private router:Router){
@@ -72,8 +73,10 @@ export class RhAdminComponent implements OnInit{
   }
 
   openUserDetails(data: any) {
-    this.dialog.open(UserDetailsComponent,{data,width:'1400px'})
+    this.dialog.open(UserDetailsComponent,{data,width:'1400px'});
   }
 
-
+  openUserEmployees(data: any) {
+    this.dialog.open(RhEmployeesComponent,{data,width:'1800px'});
+  }
 }

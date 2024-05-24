@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -138,6 +139,18 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
     @Override
     public List<User> findByDepartement(String NomDepartement) throws Exception {
         Departement departement = departementRepository.findByNom(NomDepartement);
+        Role role = Role.EMPLOYE;
+        return repository.findByDepartementAndRole(departement, role);
+    }
+
+    @Override
+    public List<User> findByRh(String cin) throws Exception {
+        Departement departement=null;
+        User user = repository.findByCin(cin);
+        Optional<Departement> Odepartement = departementRepository.findById(user.getDepartement().getId());
+        if(Odepartement.isPresent()){
+            departement=Odepartement.get();
+        }
         Role role = Role.EMPLOYE;
         return repository.findByDepartementAndRole(departement, role);
     }
