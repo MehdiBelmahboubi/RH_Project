@@ -19,4 +19,9 @@ export class TachesService {
   public createTaches(request: TachesRequest): Observable<any> {
     return this.http.post<any>(`${environment.backendHost}/taches/create`,request);
   }
+
+
+  public terminerTaches(id: number): Observable<any> {
+    return this.http.put<any>(`${environment.backendHost}/taches/terminer/${id}`,id);
+  }
 }

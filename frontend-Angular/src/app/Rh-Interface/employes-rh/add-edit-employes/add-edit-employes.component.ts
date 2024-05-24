@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UserRequest } from '../../../models/user-request';
 import { EmployesService } from '../../../service/employes.service';
 import { MessageResponse } from '../../../models/message-response';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../../../popup/popup.component';
 
 interface Contrat {
   value: string;
@@ -55,6 +56,7 @@ export class AddEditEmployesComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
     private employesService: EmployesService,
+    private dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -136,9 +138,10 @@ export class AddEditEmployesComponent implements OnInit {
       formData2.set('photo', this.Photo);
       this.employesService.modifyUser(formData2, this.data.cin).subscribe({
         next: (response: MessageResponse) => {
-          this.validation = response.message;
-          alert(this.validation);
-          window.location.reload();
+          this.dialog.open(PopupComponent, {
+            data: response.message,
+            width: '300px'
+          });
         },
         error: () => {
           this.errorMessage = "Error Adding";
@@ -170,9 +173,10 @@ export class AddEditEmployesComponent implements OnInit {
       formData.set('photo', this.Photo);
       this.employesService.addUser(formData).subscribe({
         next: (response: MessageResponse) => {
-          this.validation = response.message;
-          alert(this.validation);
-          window.location.reload();
+          this.dialog.open(PopupComponent, {
+            data: response.message,
+            width: '300px'
+          });
         },
         error: () => {
           this.errorMessage = "Error Adding";

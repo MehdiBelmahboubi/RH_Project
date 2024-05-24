@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, Inject} from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-popup',
@@ -6,10 +7,11 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrl: './popup.component.css'
 })
 export class PopupComponent {
-  @Output() close = new EventEmitter<void>();
+  constructor(public dialogRef: MatDialogRef<PopupComponent>,@Inject(MAT_DIALOG_DATA) public data: string) {}
 
-  closePopup() {
-    this.close.emit();
+  close(): void {
+    window.location.reload();
+    this.dialogRef.close();
   }
 
 }

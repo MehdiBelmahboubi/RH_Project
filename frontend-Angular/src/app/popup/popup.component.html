@@ -1,6 +1,7 @@
-<div class="popup-overlay" (click)="closePopup()"></div>
-<div class="popup-content">
-  <h2>Popup Title</h2>
-  <p>This is a simple popup message.</p>
-  <button (click)="closePopup()">Close</button>
+<h2 mat-dialog-title>Validation</h2>
+<div mat-dialog-content>
+  <p>{{ data }} <span class="emoji">😊</span></p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
 </div>

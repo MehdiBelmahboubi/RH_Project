@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { CandidatureService } from '../../service/candidature.service';
 import { CandidatRequest } from '../../models/candidatRequest';
 import { CandidateResponse } from '../../models/CandidateResponse';
+import { PopupComponent } from '../../popup/popup.component';
+import { DialogModule } from '@angular/cdk/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-candidature',
@@ -16,10 +19,12 @@ export class CandidatureComponent {
   validation: string | null = null;
   cvName: string | null = null;
   lettreMotivationName: string | null = null;
+  data!:string;
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private cadidatureservice: CandidatureService) { }
+    private cadidatureservice: CandidatureService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.formcandidature = this.fb.group({
@@ -57,8 +62,10 @@ export class CandidatureComponent {
 
     this.cadidatureservice.createcandidature(formData).subscribe({
       next: (response: CandidateResponse) => {
-        this.validation = response.message;
-        alert(this.validation);
+        this.dialog.open(PopupComponent, {
+          data: response.message,
+          width: '300px'
+        });
       },
       error: () => {
         this.errorMessage = "Retry Again";

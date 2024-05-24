@@ -5,6 +5,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {CongesService} from "../../service/conges.service";
 import {MatDialog} from "@angular/material/dialog";
+import { DemandeCongesComponent } from '../../Rh-Interface/vacations-rh/demande-conges/demande-conges.component';
 
 @Component({
   selector: 'app-vacations-empl',
@@ -26,7 +27,7 @@ export class VacationsEmplComponent implements OnInit{
               private dialog: MatDialog){}
 
   openDemandeConges() {
-
+    this.dialog.open(DemandeCongesComponent,{width: '1000px'});
   }
 
   ngOnInit(): void {
