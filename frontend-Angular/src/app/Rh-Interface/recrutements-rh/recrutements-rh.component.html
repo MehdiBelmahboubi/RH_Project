@@ -3,7 +3,9 @@
         <mat-card-title>
             Recrutement
         </mat-card-title>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Rechercher" class="search-input">
     </mat-card-header>
+  <br>
     <mat-divider></mat-divider>
     <mat-card-content>
         <table matSort mat-table [dataSource]="recrutementsDataSource">

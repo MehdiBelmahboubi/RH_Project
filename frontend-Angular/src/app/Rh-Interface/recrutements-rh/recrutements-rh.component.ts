@@ -11,17 +11,18 @@ import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 @Component({
   selector: 'app-recrutements-rh',
   templateUrl: './recrutements-rh.component.html',
-  styleUrl: './recrutements-rh.component.css'
+  styleUrls: ['./recrutements-rh.component.css']
 })
 export class RecrutementsRhComponent implements OnInit {
   departement: string | null = null;
   errorMessage: string | null = null;
   validation: string | null = null;
   cin: string | null = null;
-  data:any;
+  data: any;
   recrutements!: Array<Recrutement>;
   recrutementsDataSource!: MatTableDataSource<Recrutement>;
   displayedrecrutementsColumns: string[] = ['nom', 'prenom', 'email', 'etat', 'cv', 'lettreMotivation', 'accepter', 'refuser'];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -36,12 +37,27 @@ export class RecrutementsRhComponent implements OnInit {
           this.recrutementsDataSource = new MatTableDataSource<Recrutement>(this.recrutements);
           this.recrutementsDataSource.paginator = this.paginator;
           this.recrutementsDataSource.sort = this.sort;
+          this.recrutementsDataSource.filterPredicate = this.createFilter();
         },
         error: (err) => {
           console.error('Error fetching Conges:', err);
         }
       });
     }
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.recrutementsDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  createFilter(): (data: Recrutement, filter: string) => boolean {
+    return (data: Recrutement, filter: string): boolean => {
+      const searchTerm = filter.toLowerCase();
+      return data.nom.toLowerCase().includes(searchTerm) ||
+        data.prenom.toLowerCase().includes(searchTerm) ||
+        data.email.toLowerCase().includes(searchTerm);
+    };
   }
 
   accepteCandidat(user: Recrutement) {
@@ -77,7 +93,7 @@ export class RecrutementsRhComponent implements OnInit {
   }
 
   openCv(user: Recrutement): void {
-    this.data=user.cv;
+    this.data = user.cv;
     this.dialog.open(PdfViewerComponent, {
       data: this.data,
       width: '1000px'
@@ -85,7 +101,7 @@ export class RecrutementsRhComponent implements OnInit {
   }
 
   openLettre(user: Recrutement) {
-    this.data=user.lettreMotivation;
+    this.data = user.lettreMotivation;
     this.dialog.open(PdfViewerComponent, {
       data: this.data,
       width: '1000px'

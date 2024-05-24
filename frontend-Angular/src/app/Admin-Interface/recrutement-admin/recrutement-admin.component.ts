@@ -62,6 +62,20 @@ export class RecrutementAdminComponent implements OnInit{
     }
   }
 
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.recrutementsDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  createFilter(): (data: Recrutement, filter: string) => boolean {
+    return (data: Recrutement, filter: string): boolean => {
+      const searchTerm = filter.toLowerCase();
+      return data.nom.toLowerCase().includes(searchTerm) ||
+        data.prenom.toLowerCase().includes(searchTerm) ||
+        data.email.toLowerCase().includes(searchTerm);
+    };
+  }
+
   refuserCandidat(user: Recrutement) {
     if (user.id) {
       this.candidatService.deleteCandidat(user.id).subscribe({

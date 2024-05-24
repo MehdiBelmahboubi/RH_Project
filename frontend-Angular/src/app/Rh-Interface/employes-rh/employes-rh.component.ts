@@ -47,6 +47,14 @@ export class EmployesRhComponent implements OnInit {
     }
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.employesDataSource.filter = filterValue.trim().toLowerCase();
+    if (this.employesDataSource.paginator) {
+      this.employesDataSource.paginator.firstPage();
+    }
+  }
+
   openEditForm(data:any) {
     this.dialog.open(AddEditEmployesComponent,{
       data,

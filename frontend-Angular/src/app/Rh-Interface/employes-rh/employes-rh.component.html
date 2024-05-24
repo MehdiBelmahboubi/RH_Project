@@ -3,6 +3,7 @@
       <mat-card-title>
         Employes
       </mat-card-title>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Rechercher" class="search-input">
       <button mat-mini-fab color="primary" class="add-button" (click)="openAddEditForm()">
         <mat-icon>add</mat-icon>
       </button>
