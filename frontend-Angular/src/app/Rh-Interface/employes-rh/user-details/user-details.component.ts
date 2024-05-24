@@ -20,6 +20,7 @@ import { AddTachesComponent } from './add-taches/add-taches.component';
   styleUrl: './user-details.component.css'
 })
 export class UserDetailsComponent implements OnInit {
+  isRH!: boolean;
   errorMessage: string | null = null;
   validation: string | null = null;
   cin: string | null = null;
@@ -46,6 +47,7 @@ export class UserDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    this.isRH = localStorage.getItem('role') === 'RH';
     this.cin = this.data.cin;
     if (this.cin) {
       this.tachesService.getTachesByEmployes(this.cin).subscribe({
@@ -117,7 +119,7 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
-  openAddTaches() {
-    this.dialog.open(AddTachesComponent, {width: '1400px' })
+  openAddTaches(data:any) {
+    this.dialog.open(AddTachesComponent,{data,width: '1400px' });
   }
 }

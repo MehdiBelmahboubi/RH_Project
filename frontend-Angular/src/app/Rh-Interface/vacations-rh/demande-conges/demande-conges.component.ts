@@ -44,7 +44,7 @@ export class DemandeCongesComponent implements OnInit {
 
   onSubmit() {
     let dateDebut: Date = new Date(this.congesFromGroup.value.dateDebut);
-    let dateFin: Date = new Date(this.congesFromGroup.value.dateDebut);
+    let dateFin: Date = new Date(this.congesFromGroup.value.dateFin);
     let dateDebutFormat: string = dateDebut.getDate() + "/" + (dateDebut.getMonth() + 1) + "/" + dateDebut.getFullYear();
     let dateFinFormat: string = dateFin.getDate() + "/" + (dateFin.getMonth() + 1) + "/" + dateFin.getFullYear();
     this.cin = localStorage.getItem('cin');

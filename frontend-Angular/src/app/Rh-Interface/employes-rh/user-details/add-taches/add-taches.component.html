@@ -4,7 +4,7 @@
 </div>
 <div mat-dialog-content>
     <form [formGroup]="tachesFormGroup" class="step-form">
-        <ng-template matStepLabel>Information Personnel</ng-template>
+        <ng-template >Add Taches</ng-template>
         <div class="formGroup">
             <div class="form-row">
                 <mat-form-field class="form-field">
@@ -16,10 +16,10 @@
                 </mat-form-field>
                 <mat-form-field class="form-field">
                     <mat-label>Date Fin</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="dateFin">
+                    <input matInput [matDatepicker]="picker2" formControlName="dateFin">
                     <mat-hint>DD/MM/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
             </div>
             <div class="form-row">
@@ -27,19 +27,11 @@
                     <mat-label>Description</mat-label>
                     <input matInput placeholder="Description" formControlName="description" required>
                 </mat-form-field>
-                <mat-form-field class="form-field">
-                    <mat-label>etats</mat-label>
-                    <mat-select formControlName="etat" required>
-                        @for (etat of etats; track etat) {
-                        <mat-option [value]="etat.value">{{etat.viewValue}}</mat-option>
-                        }
-                    </mat-select>
-                </mat-form-field>
             </div>
             <div class="header">
-                <button mat-mini-fab color="primary" matStepperNext class="right-button">
-                    <mat-icon>arrow_forward</mat-icon>
-                </button>
+                <button mat-mini-fab color="primary" (click)="onSubmit()" class="right-button">
+                    <mat-icon>check</mat-icon>
+                  </button>
             </div>
         </div>
     </form>

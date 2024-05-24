@@ -7,7 +7,7 @@
         <mat-step state="assignment">
             <ng-template matStepLabel>Taches</ng-template>
             <div class="formGroup">
-                <button mat-stroked-button color="primary" (click)="openAddTaches()">Affecter Taches</button>
+                <button mat-stroked-button color="primary" (click)="openAddTaches(data)" *ngIf="!isRH">Affecter Taches</button>
                 <table matSort #sort1="matSort" mat-table [dataSource]="tachesDataSource">
                     <ng-container matColumnDef="dateDebut">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Debut</th>
