@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TachesRequest } from '../../../../models/taches-request';
 import { MessageResponse } from '../../../../models/message-response';
+import { PopupComponent } from '../../../../popup/popup.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AddTachesComponent implements OnInit{
 
   constructor(private _formBuilder: FormBuilder,
     private tachesService: TachesService,
+    private dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
@@ -44,9 +46,10 @@ export class AddTachesComponent implements OnInit{
     if(this.cin){
       this.tachesService.createTaches(tachesRequest).subscribe({
         next: (response: MessageResponse) => {
-          this.validation = response.message;
-          alert(this.validation);
-          window.location.reload();
+          this.dialog.open(PopupComponent, {
+            data: response.message,
+            width: '300px'
+          });
         },
         error: () => {
           this.errorMessage = "Error Adding";

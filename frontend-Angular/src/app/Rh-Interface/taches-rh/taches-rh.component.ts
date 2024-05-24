@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { TachesService } from '../../service/taches.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MessageResponse } from '../../models/message-response';
 
 @Component({
   selector: 'app-taches-rh',
@@ -41,6 +42,18 @@ export class TachesRhComponent implements OnInit {
   }
 
   finTaches(taches:Taches) {
-
+    if (taches.id) {
+      this.tachesService.terminerTaches(taches.id).subscribe({
+        next: (response: MessageResponse) => {
+          this.validation = response.message;
+          alert(this.validation);
+          window.location.reload();
+        },
+        error: () => {
+          this.errorMessage = "Error Accepting";
+          alert(this.errorMessage);
+        }
+      });
+    }
   }
 }

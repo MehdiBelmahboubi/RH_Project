@@ -12,7 +12,7 @@ public class Horaire {
 
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @Column(unique = true,nullable = false)
+    @Column(nullable = false)
     private String jour;
 
     @Column(nullable = false)

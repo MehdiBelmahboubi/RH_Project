@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { HoraireRequest } from '../../../models/horaire-request';
 import { HoraireService } from '../../../service/horaire.service';
 import { MessageResponse } from '../../../models/message-response';
+import { PopupComponent } from '../../../popup/popup.component';
 
 @Component({
   selector: 'app-add-horaire-dialog-component',
@@ -16,7 +17,9 @@ export class AddHoraireDialogComponentComponent implements OnInit{
   validation: string | null = null;
   horaireFormGroup!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private horaireService:HoraireService,
+  constructor(private formBuilder: FormBuilder,
+     private horaireService:HoraireService,
+     private dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) public data : any
   ) { }
 
@@ -37,9 +40,10 @@ export class AddHoraireDialogComponentComponent implements OnInit{
     if(this.cin){
       this.horaireService.addHoraire(horaireRequest).subscribe({
         next: (response: MessageResponse) => {
-          this.validation = response.message;
-          alert(this.validation);
-          window.location.reload();
+          this.dialog.open(PopupComponent, {
+            data: response.message,
+            width: '300px'
+          });
         },
         error: () => {
           this.errorMessage = "Error Adding";

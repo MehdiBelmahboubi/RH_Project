@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CongesService } from '../../../service/conges.service';
 import { CongeRequest } from '../../../models/conge-request';
 import { MessageResponse } from '../../../models/message-response';
+import { PopupComponent } from '../../../popup/popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -30,7 +32,8 @@ export class DemandeCongesComponent implements OnInit {
 
 
   constructor(private formbuilder: FormBuilder,
-    private congesService: CongesService) { }
+    private congesService: CongesService,
+    private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.congesFromGroup = this.formbuilder.group({
@@ -58,9 +61,10 @@ export class DemandeCongesComponent implements OnInit {
     if(this.cin){
       this.congesService.createConge(congeRequest).subscribe({
         next: (response: MessageResponse) => {
-          this.validation = response.message;
-          alert(this.validation);
-          window.location.reload();
+          this.dialog.open(PopupComponent, {
+            data: response.message,
+            width: '300px'
+          });
         },
         error: () => {
           this.errorMessage = "Error Adding";
