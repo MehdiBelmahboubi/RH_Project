@@ -154,4 +154,9 @@ public class IUserService implements com.mehdi.rh_project.Service.UserService {
         Role role = Role.EMPLOYE;
         return repository.findByDepartementAndRole(departement, role);
     }
+
+    @Override
+    public User findByCin(String cin) throws Exception {
+        return repository.findByCin(cin);
+    }
 }

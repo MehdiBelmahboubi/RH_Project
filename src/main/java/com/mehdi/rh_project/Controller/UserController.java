@@ -95,4 +95,10 @@ public class UserController {
         List<User> Users = UserService.findByRh(cin);
         return ResponseEntity.ok(Users);
     }
+
+    @GetMapping("/get/{cin}")
+    public ResponseEntity<User> getByCin(@PathVariable String cin) throws Exception {
+        User User = UserService.findByCin(cin);
+        return ResponseEntity.ok(User);
+    }
 }

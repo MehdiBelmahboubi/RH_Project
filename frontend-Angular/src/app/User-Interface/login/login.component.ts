@@ -31,9 +31,6 @@ export class LoginComponent {
       next: (response: AuthenticateResponse) => {
         localStorage.setItem('token',response.token);
         localStorage.setItem('cin',response.cin);
-        localStorage.setItem('nom',response.nom);
-        localStorage.setItem('prenom',response.prenom);
-        localStorage.setItem('fonction',response.fonction);
         localStorage.setItem('departement',response.departement);
         localStorage.setItem('role',response.role);
         var Role = response.role;

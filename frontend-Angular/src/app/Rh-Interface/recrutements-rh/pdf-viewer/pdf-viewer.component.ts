@@ -26,5 +26,4 @@ export class PdfViewerComponent implements OnInit {
     const file = new Blob([byteArray], { type: 'application/pdf' });
     this.fileUrl = window.URL.createObjectURL(file);
   }
-
 }

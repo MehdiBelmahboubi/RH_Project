@@ -78,7 +78,7 @@ export class AddEditEmployesComponent implements OnInit {
       salaire: ['', Validators.required],
       contrat: ['', Validators.required],
       fonction: ['', Validators.required],
-      departement: ['',Validators.required]
+      departement: ['']
     });
     this.thirdFormGroup = this._formBuilder.group({
       email: ['', Validators.required],

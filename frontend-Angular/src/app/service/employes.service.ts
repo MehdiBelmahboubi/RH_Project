@@ -26,6 +26,13 @@ export class EmployesService {
   {
     return this.http.get<Array<User>>(`${environment.backendHost}/user/get/all/rh`);
   }
+
+  public getByCin(cin:string | null = null):Observable<User>
+  {
+    return this.http.get<User>(`${environment.backendHost}/user/get/${cin}`);
+  }
+
+  
   public deleteUser(cin:string){
     return this.http.delete<any>(`${environment.backendHost}/user/delete/${cin}`)
   }

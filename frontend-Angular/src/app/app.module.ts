@@ -73,6 +73,10 @@ import { AddHoraireDialogComponentComponent } from './Rh-Interface/horaire-rh/ad
 import { RhEmployeesComponent } from './Admin-Interface/rh-admin/rh-employees/rh-employees.component';
 import { AddTachesComponent } from './Rh-Interface/employes-rh/user-details/add-taches/add-taches.component';
 import { PopupComponent } from './popup/popup.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { CommonModule } from '@angular/common';
+import { CanvasJSAngularChartsModule, CanvasJSChart } from '@canvasjs/angular-charts';
+
 
 
 @NgModule({
@@ -158,7 +162,10 @@ import { PopupComponent } from './popup/popup.component';
     MatSelectModule,
     MatPrefix,
     MatIconButton,
-    FullCalendarModule
+    FullCalendarModule,
+    NgxChartsModule,
+    CommonModule,
+    CanvasJSAngularChartsModule
   ],
   providers: [
     provideAnimationsAsync(),AuthGuard,AuthorizationGuard,

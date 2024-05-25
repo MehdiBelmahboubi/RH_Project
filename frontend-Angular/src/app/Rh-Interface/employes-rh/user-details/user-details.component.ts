@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { EmployesService } from '../../../service/employes.service';
@@ -39,6 +39,9 @@ export class UserDetailsComponent implements OnInit {
   @ViewChild('sort1') sort1!: MatSort;
   @ViewChild('sort2') sort2!: MatSort;
   @ViewChild('sort3') sort3!: MatSort;
+  @Output() tachesData = new EventEmitter<Taches[]>();
+  @Output() congesData = new EventEmitter<Conges[]>();
+  @Output() horaireData = new EventEmitter<Horaire[]>();
 
   constructor(private tachesService: TachesService,
     private congesService: CongesService,
@@ -85,6 +88,9 @@ export class UserDetailsComponent implements OnInit {
           console.error('Error fetching Horaires:', err);
         }
       });
+      this.tachesData.emit(this.taches);
+    this.congesData.emit(this.conges);
+    this.horaireData.emit(this.horaire);
     } else {
       console.error('No Employee Was Found');
     }
