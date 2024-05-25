@@ -4,6 +4,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {TachesService} from "../../service/taches.service";
+import { MessageResponse } from '../../models/message-response';
 
 @Component({
   selector: 'app-taches-empl',
@@ -11,13 +12,12 @@ import {TachesService} from "../../service/taches.service";
   styleUrl: './taches-empl.component.css'
 })
 export class TachesEmplComponent implements OnInit{
-
   errorMessage: string | null = null;
   validation: string | null = null;
   cin: string | null = null;
   taches!: Array<Taches>;
   tachesDataSource!: MatTableDataSource<Taches>;
-  displayedtachesColumns: string[] = ['dateDebut', 'dateFin', 'description', 'etat'];
+  displayedtachesColumns: string[] = ['dateDebut', 'dateFin', 'description', 'etat', 'fin'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -39,4 +39,20 @@ export class TachesEmplComponent implements OnInit{
       });
     }
   }
+
+  finTaches(taches:Taches) {
+    if (taches.id) {
+      this.tachesService.terminerTaches(taches.id).subscribe({
+        next: (response: MessageResponse) => {
+          this.validation = response.message;
+          alert(this.validation);
+          window.location.reload();
+        },
+        error: () => {
+          this.errorMessage = "Error Accepting";
+          alert(this.errorMessage);
+        }
+      });
+    }
+    }
 }

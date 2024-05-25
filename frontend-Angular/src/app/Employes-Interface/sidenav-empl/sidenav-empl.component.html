@@ -1,8 +1,6 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <img
-      class="avatar mat-elevation-z8"
-    />
+    <img class="avatar mat-elevation-z8" [src]="getPhotoUrl()" alt="Avatar">
     <h4 class="name">{{ nom + " " +prenom }}</h4>
     <p class="designation">{{fonction}}</p>
 
