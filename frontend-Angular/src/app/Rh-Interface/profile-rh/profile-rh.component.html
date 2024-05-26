@@ -2,23 +2,22 @@
   <div class="profile-left">
     <div class="edit-section">
       <h2>Profile</h2>
-      <img
-        class="avatar mat-elevation-z8"
-      />
+      <img class="avatar mat-elevation-z8" [src]="getPhotoUrl()" alt="Avatar">
+
 
       <div class="employee-info">
         <ul>
-          <li><strong>CIN:</strong> {{ rh.cin }}</li>
-          <li><strong>Nom:</strong> {{ rh.nom }}</li>
-          <li><strong>Prénom:</strong> {{ rh.prenom }}</li>
-          <li><strong>Date de Naissance:</strong> {{ rh.dateNaissance }}</li>
-          <li><strong>Téléphone:</strong> {{ rh.telephone }}</li>
-          <li><strong>Email:</strong> {{ rh.email }}</li>
-          <li><strong>Contrat:</strong> {{ rh.contrat }}</li>
-          <li><strong>Fonction:</strong> {{ rh.fonction }}</li>
-          <li><strong>Salaire:</strong> {{ rh.salaire }}</li>
-          <li><strong>CNSS:</strong> {{ rh.cnss }}</li>
-          <li><strong>Date de Recrutement:</strong> {{ rh.dateRecrutement }}</li>
+          <li><strong>CIN:</strong> {{ cin }}</li>
+          <li><strong>Nom:</strong> {{ nom }}</li>
+          <li><strong>Prénom:</strong> {{ prenom }}</li>
+          <li><strong>Date de Naissance:</strong> {{ dateNaissance }}</li>
+          <li><strong>Téléphone:</strong> {{ telephone }}</li>
+          <li><strong>Email:</strong> {{ email }}</li>
+          <li><strong>Contrat:</strong> {{ contrat }}</li>
+          <li><strong>Fonction:</strong> {{ fonction }}</li>
+          <li><strong>Salaire:</strong> {{ salaire }}</li>
+          <li><strong>CNSS:</strong> {{ cnss }}</li>
+          <li><strong>Date de Recrutement:</strong> {{ dateRecrutement }}</li>
         </ul>
       </div>
     </div>
@@ -29,10 +28,10 @@
       <h2>Modifier mail et Mot de passe </h2>
       <div class="email-change">
         <label>Nouveau mail</label>
-        <input type="email" [(ngModel)]="newEmail" class="input-field">
+        <input type="email"  class="input-field">
         <div class="password-change">
           <label>Nouveau mot de passe</label>
-          <input type="password" [(ngModel)]="newPassword" class="input-field">
+          <input type="password"  class="input-field">
           <button (click)="changePassword()" class="submit">Enregistrer</button>
         </div>
       </div>

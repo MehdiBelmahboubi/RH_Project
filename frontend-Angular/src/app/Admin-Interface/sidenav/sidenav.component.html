@@ -6,10 +6,16 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="/GsAdmin/dashboard">
-      <mat-icon>dashboard</mat-icon>
-      <span>Dashboard</span>
-    </button>
+    <button 
+  mat-button 
+  class="menu-button" 
+  routerLink="/GsAdmin/dashboard" 
+  routerLinkActive="menu-button-active"
+  [routerLinkActiveOptions]="{ exact: true }">
+  <mat-icon>dashboard</mat-icon>
+  <span>Dashboard</span>
+</button>
+
     <button mat-button class="menu-button" routerLink="/GsAdmin/rh">
       <mat-icon>personne</mat-icon>
       <span>RH</span>

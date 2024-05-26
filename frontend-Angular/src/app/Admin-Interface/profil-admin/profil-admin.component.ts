@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
 export class ProfilAdminComponent {
 
   admin = {
-    nom: 'lola',
-    prenom: 'lme7loula',
+    nom: 'Admin',
+    prenom: 'Admin',
 
   };
 
